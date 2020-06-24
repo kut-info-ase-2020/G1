@@ -125,13 +125,17 @@ def main():
             print "humidity: %s %%,  Temperature: %s C" % (humidity, temperature)
             thi = calc_THI(humidity, temperature)
             print("thi = " + str(thi))
+            thi = 1
+            if (thi <= 1.0):
+                LED_onoff(BLUEPIN)
+            """
             if (thi <= 75.0):
                 LED_onoff(BLUEPIN)
             elif (thi < 85.0):
                 LED_onoff(YELLOWPIN)
             else:
                 LED_onoff(REDPIN)
-
+            """
 #def destroy():
 #    GPIO.cleanup()
 
@@ -161,7 +165,7 @@ def destroy():
     GPIO.output(REDPIN,GPIO.LOW)
     GPIO.output(BLUEPIN,GPIO.LOW)
     GPIO.output(YELLOWPIN,GPIO.LOW)
-    
+
     #release resource
     GPIO.cleanup()
 
