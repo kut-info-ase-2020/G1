@@ -138,14 +138,15 @@ def main():
 
 # calculate thi
 def calc_THI(temp, humi):
+    """
     thi1 = 0.81 * temp
     thi2 = 0.01 * humi
     thi3 = 0.99 * temp
     thi4 = thi3 - 14.3
     thi5 = thi2 * thi4 + 46.3
-
     thi = thi1 + thi4
-
+    """
+    thi = 0.81 * temp + 0.01 * humi * (0.99 * temp - 14.3) + 46.3
     return thi
 
 # LED light process
