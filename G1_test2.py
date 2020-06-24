@@ -120,6 +120,7 @@ def main():
             humidity, temperature = result
             print "humidity: %s %%,  Temperature: %s C" % (humidity, temperature)
         time.sleep(1)
+        print("temp = " + temperature + ", humi = " + humidity)
 
 def destroy():
     GPIO.cleanup()
