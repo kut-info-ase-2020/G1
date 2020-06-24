@@ -13,6 +13,7 @@ import time
 
 # set GPIO 0 as LED pin
 LEDPIN = 17
+LEDPIN2 = 20
 
 #print message at the begining ---custom function
 def print_message():
@@ -43,10 +44,12 @@ def main():
     print_message()
     while True:
        GPIO.output(LEDPIN,GPIO.HIGH)
+       GPIO.output(LEDPIN2,GPIO.HIGH)
        print('...LED ON\n')
        time.sleep(0.5)
 
        GPIO.output(LEDPIN,GPIO.LOW)
+       GPIO.output(LEDPIN2,GPIO.LOW)
        print('LED OFF...\n')
        time.sleep(0.5)
        pass
