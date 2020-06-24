@@ -124,10 +124,10 @@ def main():
             humidity, temperature = result
             print "humidity: %s %%,  Temperature: %s C" % (humidity, temperature)
             thi = calc_THI(humidity, temperature)
-            print("thi = " + thi)
-            if (thi <= 75):
+            print("thi = " + str(thi))
+            if (thi <= 75.0):
                 LED_onoff(BLUEPIN)
-            elif (thi < 85):
+            elif (thi < 85.0):
                 LED_onoff(YELLOWPIN)
             else:
                 LED_onoff(REDPIN)
