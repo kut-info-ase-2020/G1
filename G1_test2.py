@@ -153,7 +153,7 @@ def setup_LED():
 def LED_onoff(pin):
     GPIO.output(pin,GPIO.HIGH)
     time.sleep(1)
-    GPIO.output(pin GPIO.LOW)
+    GPIO.output(pin,GPIO.LOW)
 
 def destroy():
     #turn off LED
