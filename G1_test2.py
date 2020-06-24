@@ -140,11 +140,11 @@ def main():
 def calc_THI(temp, humi):
     thi1 = 0.81 * temp
     thi2 = 0.01 * humi
-    thi3 = 0.99 * temp 
+    thi3 = 0.99 * temp
     thi4 = thi3 - 14.3
     thi5 = thi2 * thi4
 
-    thi = thi1 + thi4 + 46.3
+    thi = thi1 + thi4
 
     return thi
 
