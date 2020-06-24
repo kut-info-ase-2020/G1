@@ -127,7 +127,7 @@ def main():
             print("thi = " + str(thi))
             thi = 1
             if (thi <= 1.0):
-                LED_onoff(BLUEPIN)
+                LED_onoff(YELLOWPIN)
             """
             if (thi <= 75.0):
                 LED_onoff(BLUEPIN)
