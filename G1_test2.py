@@ -123,7 +123,7 @@ def main():
         if result:
             humidity, temperature = result
             print "humidity: %s %%,  Temperature: %s C" % (humidity, temperature)
-            thi = calc_THI(humidity, temperature)
+            thi = calc_THI(temperature, humidity)
             print("thi = " + str(thi))
 
             if (thi <= 75.0):
@@ -142,7 +142,7 @@ def calc_THI(temp, humi):
     thi2 = 0.01 * humi
     thi3 = 0.99 * temp
     thi4 = thi3 - 14.3
-    thi5 = thi2 * thi4
+    thi5 = thi2 * thi4 + 46.3
 
     thi = thi1 + thi4
 
