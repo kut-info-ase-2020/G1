@@ -37,6 +37,7 @@ def setup():
     GPIO.setmode(GPIO.BCM)
     #set LEDPIN's mode to output,and initial level to LOW(0V)
     GPIO.setup(LEDPIN,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(LEDPIN2,GPIO.OUT,initial=GPIO.LOW)
 
 #main function
 def main():
@@ -59,6 +60,7 @@ def main():
 def destroy():
     #turn off LED
     GPIO.output(LEDPIN,GPIO.LOW)
+    GPIO.output(LEDPIN2,GPIO.LOW)
     #release resource
     GPIO.cleanup()
 #
