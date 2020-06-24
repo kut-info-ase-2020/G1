@@ -12,7 +12,7 @@ import time
 DHTPIN = 14
 REDPIN = 22
 BLUEPIN = 5
-YELLOWPIN = 5
+YELLOWPIN = 4
 
 
 GPIO.setmode(GPIO.BCM)
