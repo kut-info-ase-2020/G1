@@ -10,6 +10,10 @@ import time
 
 #DHT11 connect to BCM_GPIO14
 DHTPIN = 14
+REDPIN = 22
+BLUEPIN = 5
+YELLOWPIN = 5
+
 
 GPIO.setmode(GPIO.BCM)
 
@@ -119,12 +123,47 @@ def main():
         if result:
             humidity, temperature = result
             print "humidity: %s %%,  Temperature: %s C" % (humidity, temperature)
-        time.sleep(1)
+            thi = calc_THI(humidity, temperature)
+            if (thi <= 75):
+                LED_onoff(BLUEPIN)
+            elif (thi < 85):
+                LED_onoff(YELLOWPIN)
+            else:
+                LED_onoff(REDPIN)
+
+#def destroy():
+#    GPIO.cleanup()
+
+# calculate thi
+def calc_THI(temp, humi):
+    thi = 0.81 * temp + 0.01 * himi * (0.99 * temp - 14) + 40.6
+
+    return thi
+
+# LED light process
+def setup_LED():
+    GPIO.setwarnings(False)
+    #set the gpio modes to BCM numbering
+    GPIO.setmode(GPIO.BCM)
+    #set LEDPIN's mode to output,and initial level to LOW(0V)
+    GPIO.setup(REDPIN,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(BLUEPIN,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(GREENPIN,GPIO.OUT,initial=GPIO.LOW)
+
+def LED_onoff(int pin):
+    GPIO.output(pin,GPIO.HIGH)
+    time.sleep(1)
+    GPIO.output(pin GPIO.LOW)
 
 def destroy():
+    #turn off LED
+    GPIO.output(LEDPIN,GPIO.LOW)
+    GPIO.output(LEDPIN2,GPIO.LOW)
+    #release resource
     GPIO.cleanup()
 
 if __name__ == '__main__':
+    setup_LED()
     try:
         main()
     except KeyboardInterrupt:
