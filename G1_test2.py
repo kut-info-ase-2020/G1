@@ -150,7 +150,7 @@ def setup_LED():
     GPIO.setup(BLUEPIN,GPIO.OUT,initial=GPIO.LOW)
     GPIO.setup(GREENPIN,GPIO.OUT,initial=GPIO.LOW)
 
-def LED_onoff(int pin):
+def LED_onoff(pin):
     GPIO.output(pin,GPIO.HIGH)
     time.sleep(1)
     GPIO.output(pin GPIO.LOW)
