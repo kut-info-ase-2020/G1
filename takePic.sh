@@ -1,3 +1,4 @@
+#!/bin/sh
 # time scale = $1 (arg1)
 # take picture by $1
 # save in ../Pictures
