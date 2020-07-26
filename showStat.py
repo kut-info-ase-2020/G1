@@ -33,7 +33,7 @@ def main():
 	if int(res) == 0:
 		led.LED_on(led.GREENPIN)
 	else:
-		led.LED_on(led.REDPIN)
+		led.LED_on(led.GREENPIN)
 	
 	print("Answer is " + str(res))
 
