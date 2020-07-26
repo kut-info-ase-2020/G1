@@ -44,4 +44,4 @@ def destroy():
 	LED_off()
 
     #release resource
-    GPIO.cleanup()
+	GPIO.cleanup()
