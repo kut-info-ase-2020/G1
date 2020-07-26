@@ -11,7 +11,7 @@ import time
 #DHT11 connect to BCM_GPIO14
 DHTPIN = 14
 REDPIN = 22
-GREENPIN = 4
+GREENPIN = 23
 
 GPIO.setmode(GPIO.BCM)
 
