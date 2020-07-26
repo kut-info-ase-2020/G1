@@ -41,8 +41,7 @@ def LED_off():
 
 def destroy():
     #turn off LED
-    GPIO.output(REDPIN,GPIO.LOW)
-    GPIO.output(GREENPIN,GPIO.LOW)
+	LED_off()
 
     #release resource
     GPIO.cleanup()
