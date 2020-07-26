@@ -13,7 +13,7 @@ def main():
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 	# connect server
-	s.connect((host, port))
+	s.connect((HOST, PORT))
 
 	# send image to server
 	print("Send " + image_file)
