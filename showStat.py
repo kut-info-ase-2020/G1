@@ -31,9 +31,9 @@ def main():
 
 	#tern on LED
 	if int(res) == 0:
-		led.LED_on(led.REDPIN)
-	else:
 		led.LED_on(led.GREENPIN)
+	else:
+		led.LED_on(led.REDPIN)
 	
 	print("Answer is " + str(res))
 
