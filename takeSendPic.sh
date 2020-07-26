@@ -3,8 +3,6 @@
 # take picture by $1
 # save in ../Pictures
 
-trap python finish.py; SIGHUP SIGINT SIGKILL SIGTERM
-
 while [ "$1" -ne 0 ] 
 do
 	fswebcam -r 680x480 ../Pictures/pic.png;
