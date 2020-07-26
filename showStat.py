@@ -1,5 +1,6 @@
 import socket
 import os, sys
+import LEDproc as led
 
 HOST = "192.168.0.30"
 PORT = 50001
@@ -23,8 +24,22 @@ def main():
 
 	# receive answer from server (buffer size = 4 bite)
 	res = s.recv(4)
+	
+	# result process
+	# turn off LED
+	led.LED_off()
 
+	#tern on LED
+	if int(res) == 0:
+		led.LED_on(led.BLUEPIN)
+	else:
+		led.LED_on(led.REDPIN)
+	
 	print("Answer is " + str(res))
 
 if __name__ == '__main__':
-	main()
+	led.setup_LED()
+	try:
+		main()
+	except KeyboardInterrupt:
+		led.destroy()

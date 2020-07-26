@@ -159,10 +159,13 @@ def setup_LED():
     GPIO.setup(BLUEPIN,GPIO.OUT,initial=GPIO.LOW)
     GPIO.setup(YELLOWPIN,GPIO.OUT,initial=GPIO.LOW)
 
-def LED_onoff(pin):
+def LED_on(pin):
     GPIO.output(pin,GPIO.HIGH)
-    time.sleep(1)
-    GPIO.output(pin,GPIO.LOW)
+
+def LED_off():
+	GPIO.output(REDPIN, GPIO.HIGH)
+	GPIO.output(YELLOWPIN, GPIO.HIGH)
+	GPIO.output(BLUEPIN, GPIO.HIGH)
 
 def destroy():
     #turn off LED
