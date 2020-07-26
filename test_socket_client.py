@@ -8,7 +8,7 @@ def main():
 	image_file = sys.argv[1]
 
 	with open(image_file, 'rb') as f:
-    	binary = f.read()
+		binary = f.read()
 	
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
