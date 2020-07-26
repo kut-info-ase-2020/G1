@@ -1,7 +1,7 @@
 import socket
 import os, sys
 
-HOST = "0.0.0.0"
+HOST = "192.168.0.30"
 PORT = 50001
 
 def main():
