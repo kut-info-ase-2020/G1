@@ -31,7 +31,7 @@ def main():
 
 	#tern on LED
 	if int(res) == 0:
-		led.LED_on(led.BLUEPIN)
+		led.LED_on(led.GREENPIN)
 	else:
 		led.LED_on(led.REDPIN)
 	

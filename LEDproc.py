@@ -11,9 +11,7 @@ import time
 #DHT11 connect to BCM_GPIO14
 DHTPIN = 14
 REDPIN = 22
-BLUEPIN = 5
-YELLOWPIN = 4
-
+GREENPIN = 4
 
 GPIO.setmode(GPIO.BCM)
 
@@ -32,22 +30,19 @@ def setup_LED():
     GPIO.setmode(GPIO.BCM)
     #set LEDPIN's mode to output,and initial level to LOW(0V)
     GPIO.setup(REDPIN,GPIO.OUT,initial=GPIO.LOW)
-    GPIO.setup(BLUEPIN,GPIO.OUT,initial=GPIO.LOW)
-    GPIO.setup(YELLOWPIN,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(GREENPIN,GPIO.OUT,initial=GPIO.LOW)
 
 def LED_on(pin):
     GPIO.output(pin,GPIO.HIGH)
 
 def LED_off():
 	GPIO.output(REDPIN, GPIO.LOW)
-	GPIO.output(YELLOWPIN, GPIO.LOW)
-	GPIO.output(BLUEPIN, GPIO.LOW)
+	GPIO.output(GREENPIN, GPIO.LOW)
 
 def destroy():
     #turn off LED
     GPIO.output(REDPIN,GPIO.LOW)
-    GPIO.output(BLUEPIN,GPIO.LOW)
-    GPIO.output(YELLOWPIN,GPIO.LOW)
+    GPIO.output(GREENPIN,GPIO.LOW)
 
     #release resource
     GPIO.cleanup()
