@@ -7,6 +7,9 @@ PORT = 50001
 SC_DIR = "./Pictures"
 SC_FILE = "sc_file.png"
 
+# for test
+test = 0
+
 def main():
 	# definition socket
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -46,18 +49,20 @@ def recv_client_data(clientsock):
 		f.write(all_data)
 	
 	# only now 
-	res = "0"
+	global test
+	res = test % 2
+	test += 1
 
 	'''
 	# actually use
 	# image in ./Pictures/sc_file.png
-	# output is String (estimate 0 ~ 7)
+	# output is Int (estimate 0 ~ 7)
 	# pleese make and use mathod
 	res = recognition()
 	'''
 
 	# send result to client
-	clientsock.sendall(res)
+	clientsock.sendall(str(res))
 
 	clientsock.close()
 
