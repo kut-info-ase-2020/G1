@@ -1,4 +1,4 @@
-
+Hi, 
 Codes of training and models come from opening source code:https://github.com/eriklindernoren/PyTorch-YOLOv3  (Train/py, Models.py ) 
 
 Checkpoints: I had trained 500 times for detection. If you want to try the mask-detection , you can use the file in checkpoints.
@@ -15,4 +15,4 @@ Train/py you can use your dataset to train it. But you should prepare your datas
 
 cam_detect.py Real-time camera mask detection, after training, please change the path that you have save the weights.
 
- 
+-Eden
