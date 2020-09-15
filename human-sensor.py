@@ -2,7 +2,7 @@
 import time
 import RPi.GPIO as GPIO
 
-sensor_pin = 16
+sensor_pin = 26
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor_pin, GPIO.IN)
