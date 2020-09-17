@@ -13,5 +13,5 @@ while True:
         print ("OFF")
     else:
         print("ON")
-        subprocess.run('takeSendPic.sh')
+        subprocess.takeSendPic('')
     time.sleep(10)
