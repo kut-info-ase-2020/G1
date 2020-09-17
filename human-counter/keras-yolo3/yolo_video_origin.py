@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 import sys
 import argparse
 from yolo import YOLO, detect_video
