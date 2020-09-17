@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import time
 import RPi.GPIO as GPIO
+import os
 import subprocess
 sensor_pin = 26
 
@@ -13,5 +14,17 @@ while True:
         print ("OFF")
     else:
         print("ON")
-        subprocess.takeSendPic('')
+        # -*- coding: utf-8 -*-
+
+    #def call_shell():
+    	path = os.path.dirname(os.path.abspath(__file__))
+    	cmd = '{}/takeSendPic.sh'.format(path)
+    	res = subprocess.call(cmd, shell=True)
+    	print(res)
+
+
+#if __name__ == '__main__':
+#    call_shell()
+#        subprocess.takeSendPic('')
+    
     time.sleep(10)
