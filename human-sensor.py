@@ -18,7 +18,7 @@ while True:
 
     #def call_shell():
     	path = os.path.dirname(os.path.abspath(__file__))
-    	cmd = '{}/takeSendPic.sh'.format(path)
+    	cmd = '{}/takeSendPic.sh {}'.format(path, 5)
     	res = subprocess.call(cmd, shell=True)
     	print(res)
 
