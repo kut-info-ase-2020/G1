@@ -1,7 +1,7 @@
 import socket
 import os, sys
 
-HOST = "0.0.0.0"
+HOST = "18.181.171.51"
 PORT = 50001
 
 SC_DIR = "./Pictures"
