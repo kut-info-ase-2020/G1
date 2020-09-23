@@ -13,7 +13,8 @@
   socket_host.py
   ```
 ### ・takeSendPic.sh
-
+　カメラと"showstat.py"の実行
+  Running the camera and "showstat.py".
 ### ・LEDproc.py
 　LEDの動作  
 　Operate LED rights.
