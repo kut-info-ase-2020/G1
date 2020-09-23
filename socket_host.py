@@ -4,7 +4,7 @@ import os, sys
 HOST = "0.0.0.0"
 PORT = 50001
 
-SC_DIR = "./Pictures"
+SC_DIR = "../Pictures"
 SC_FILE = "sc_file.png"
 
 # for test
