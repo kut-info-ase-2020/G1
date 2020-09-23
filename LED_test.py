@@ -8,5 +8,5 @@ while True:
 	else:
 		led.LED_on(led.REDPIN)
 	time.sleep(1)
-	cnt ++
+	cnt += 1
 	led.LED_off()
