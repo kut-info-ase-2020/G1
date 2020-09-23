@@ -1,6 +1,7 @@
 import LEDproc as led
 import time
 
+led.setup_LED()
 cnt = 0
 while True:
 	if cnt % 2 == 0:
