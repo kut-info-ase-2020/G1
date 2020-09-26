@@ -32,7 +32,7 @@ def setup_LED():
     #set LEDPIN's mode to output,and initial level to LOW(0V)
     GPIO.setup(REDPIN,GPIO.OUT,initial=GPIO.LOW)
     GPIO.setup(GREENPIN,GPIO.OUT,initial=GPIO.LOW)
-	GPIO.setup(YELLOWPIN,GPIO.OUT,initial=GPIO.LOW)
+    GPIO.setup(YELLOWPIN,GPIO.OUT,initial=GPIO.LOW)
 
 def LED_on(pin):
     GPIO.output(pin,GPIO.HIGH)
