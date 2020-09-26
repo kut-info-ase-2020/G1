@@ -66,5 +66,19 @@ def recv_client_data(clientsock):
 
 	clientsock.close()
 
+# recognition method
+def recognition():
+	# parameter for return (INT)
+	res = 0
+
+	# please fit your models to image
+	# received image is saved in ./Pictures/sc_file.png
+	
+
+	# return is INT
+	# 1st-7th bit means number of person
+	# 8th bit means alert(1) or not(0) (too many person, anyone don't put mask.)
+	return res
+
 if __name__ == '__main__':
 	main()
