@@ -29,13 +29,15 @@ def main():
 	# turn off LED
 	led.LED_off()
 
-	#tern on LED
-	if int(res) == 0:
+	# tern on LED
+	if int(res) < 4:
 		led.LED_on(led.GREENPIN)
-	else:
+	if int(res) / 8 == 1:
+		led.LED_on(led.YELLOWPIN)
+	if (int(res) % 8) / 4  == 1:
 		led.LED_on(led.REDPIN)
 	
-	print("Answer is " + str(res))
+	print("Answer is " + str(int(res) % 4))
 
 if __name__ == '__main__':
 	led.setup_LED()
