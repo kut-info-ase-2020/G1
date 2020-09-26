@@ -76,8 +76,9 @@ def recognition():
 	
 
 	# return is INT
-	# 1st-7th bit means number of person
-	# 8th bit means alert(1) or not(0) (too many person, anyone don't put mask.)
+	# 1st-6th bit means number of person
+	# 7th bit means anyone don't put on mask(1) or safe(0)
+	# 8th bit means people distance is too close(1) or safe(0)
 	return res
 
 if __name__ == '__main__':
