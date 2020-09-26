@@ -50,13 +50,13 @@ def recv_client_data(clientsock):
 	
 	# only now 
 	global test
-	res = test % 2
+	res = test % 16
 	test += 1
 
 	'''
 	# actually use
 	# image in ./Pictures/sc_file.png
-	# output is Int (estimate 0 ~ 7)
+	# output is Int (estimate 0 ~ 15)
 	# pleese make and use mathod
 	res = recognition()
 	'''
