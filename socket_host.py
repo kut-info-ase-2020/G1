@@ -75,8 +75,8 @@ def recognition():
 	
 	#start to do the test on Mask-Detection
 	
-	input_path=""
-	out_path=""
+	input_path="/home/ec2-user/Pictures/sc_file.png"
+	out_path="/home/ec2-user/Pictures/"
 	
 	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
 	a=mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.
