@@ -20,6 +20,9 @@ def get_2distance(p1, p2):  # Calculate Euclidean Distance between two points (2
     dst = math.sqrt(p1**2 + p2**2)
     return dst
 
+def combinations_count(n, r):
+    return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
+
 def convertBack(x, y, w, h):  # Converts center coordinates to rectangle coordinates (中心座標を矩形座標に変換)
     """
     :param:
@@ -34,73 +37,175 @@ def convertBack(x, y, w, h):  # Converts center coordinates to rectangle coordin
     ymax = int(round(y + (h / 2)))
     return xmin, ymin, xmax, ymax
 
-def cvDrawBoxes(detections, img):
+
+def check_distance(pointX):
     """
     :param:
-    detections = total detections in one frame (1フレーム内の総検出数)
-    img = image from detect_image method of darknet (ダークネットの検出メソッドからの画像)
+    pointX = 各人物のボックス点(タプル型) (x1,x2,y1,y2)
     :return:
-    img with bbox
+    min_distance : 最小の距離
     """
-    #================================================================
-    # 3.1 Purpose : Filter out Persons class from detections and get
-    #           bounding box centroid for each person detection. (検出されたクラスをフィルタリングし，各人物のバウンディングボックスの重心を取得する)
-    #================================================================
-    if len(detections) > 0:                         # At least 1 detection in the image and check detection presence in a frame (画像内で少なくとも1つの検出を行い，フレーム内の検出の有無確認)
-        centroid_dict = dict()                      # Function creates a dictionary and calls it centroid_dict (辞書の関数を作成)
-        objectId = 0                                # We inialize a variable called ObjectId and set it to 0 (変数IDを作成し，初期値0とする)
-        for detection in detections:                # In this if statement, we filter all the detections for persons only (人物のみにフィルタリングを行う)
-            # Check for the only person name tag (各人物にタグをつける)
-            name_tag = str(detection[0].decode())   # Coco file has string of all the names (検出されたクラス内から人物だけを取得する)
-            if name_tag == 'person':
-                x, y, w, h = detection[2][0],\
-                            detection[2][1],\
-                            detection[2][2],\
-                            detection[2][3]         # Store the center points of the detections (検出したものの中心座標，ボックスの大きさを格納する)
-                xmin, ymin, xmax, ymax = convertBack(float(x), float(y), float(w), float(h))   # Convert from center coordinates to rectangular coordinates, We use floats to ensure the precision of the BBox (中心座標を矩形座標に変換)
-                # Append center point of bbox for persons detected. (検出された人のボックスの中心点を追加する)
-                centroid_dict[objectId] = (int(x), int(y), xmin, ymin, xmax, ymax) # Create dictionary of tuple with 'objectId' as the index center points and bbox (各人物の中心座標やボックスサイズの情報をcentroid_dictの辞書に格納する)
-                objectId += 1 #Increment the index for each detection (IDをインクリメント)
-    #=================================================================#
-    #=================================================================
-    # 3.2 Purpose : Determine which person bbox are close to each other (各人物間の距離が近いかどうかを判別する)
-    #=================================================================
-        red_zone_list = [] # List containing which Object id is in under threshold distance condition. (距離が一定値より近いIDリストの作成)
-        red_line_list = []
-        for (id1, p1), (id2, p2) in combinations(centroid_dict.items(), 2): # Get all the combinations of close detections, #List of multiple items - id1 1, points 2, 1,3 (接近検出の組み合わせを全て取得する)
-            dx, dy = p1[0] - p2[0], p1[1] - p2[1]   # Check the difference between centroid x: 0, y :1 (各人物間の距離を求めるための座標差分)
-            distance = get_2distance(dx, dy)             # Calculates the Euclidean distance (ユークリッド距離の計算)
-            if distance < 75.0:                     # Set our social distance threshold - If they meet this condition then.. (社会的距離の閾値の設定)
-                if id1 not in red_zone_list:
-                    red_zone_list.append(id1)       #  Add Id to a List (IDをリストに追加)
-                    red_line_list.append(p1[0:2])   #  Add points to the list (線を引くための中心点をリストに追加)
-                if id2 not in red_zone_list:
-                    red_zone_list.append(id2)       # Same for the second id
-                    red_line_list.append(p2[0:2])
-        for idx, box in centroid_dict.items():  # dict (1(key):red(value), 2 blue)  idx - key  box - value
-            if idx in red_zone_list:   # if id is in red zone list (IDがレッドゾーンにある場合)
-                cv2.rectangle(img, (box[2], box[3]), (box[4], box[5]), (255, 0, 0), 2) # Create Red bounding boxes  #starting point, ending point size of 2 (ボックスの色を赤にする)
-            else:
-                cv2.rectangle(img, (box[2], box[3]), (box[4], box[5]), (0, 255, 0), 2) # Create Green bounding boxes (ボックスの色を緑にする)
-    #=================================================================#
+    midpointX, midpointY = (np.array(pointX[1])-np.array(pointX[0]))/2, (np.array(pointX[3])-np.array(pointX[2]))/2
+    #print(midpointX, midpointY)
+    min_distance = 0
+    distance = [] # 距離を格納する所を初期化
+    for i in range(midpointX.shape[0]-1):
+       for j in range(midpointX.shape[0]):
+           if i == j or i > j:
+               continue
+           #print(j)
+           dx, dy = midpointX[i]-midpointX[j], midpointY[i]-midpointY[j]
+           #print(dx, dy)
+           tmp = get_2distance(dx, dy)
+           distance.append(tmp)
 
-    #=================================================================
-    # 3.3 Purpose : Display Risk Analytics and Show Risk Indicators (リスク分析の表示とリスク指標の表示)
-    #=================================================================
-    #=================================================================#
-        text = "People at Risk: %s" % str(len(red_zone_list))           # Count People at Risk (リスクのある人物を数える)
-        location = (10,25)                                              # Set the location of the displayed text (表示されるテキストの位置の設定)
-        cv2.putText(img, text, location, cv2.FONT_HERSHEY_SIMPLEX, 1, (246,86,86), 2, cv2.LINE_AA)  # Display Text (表示テキスト)
+    #midpoint = (pointX[1] - pointX[0])/2 # それぞれの中心点を求める
+    #print('midpoint =\n', midpoint)
+    #distance = [] # 距離を格納する所を初期化
+    #for i in range(midpoint.shape[0]-1):
+    #    for j in range(midpoint.shape[0]):
+    #        if i == j or i > j:
+    #            continue
+    #        print(j)
+    #        dx, dy = midpoint[i][0]-midpoint[j][0], midpoint[i][1]-midpoint[j][1]
+    #        print(dx, dy)
+    #        tmp = get_2distance(dx, dy)
+    #        distance.append(tmp)
 
-        for check in range(0, len(red_line_list)-1):                    # Draw line between nearby bboxes iterate through redlist items (近くにあるボックス間に線を引き，レッドリストの項目を反復処理する)
-            start_point = red_line_list[check]
-            end_point = red_line_list[check+1]
-            check_line_x = abs(end_point[0] - start_point[0])           # Calculate the line coordinates for x (線のx座標の計算)
-            check_line_y = abs(end_point[1] - start_point[1])           # Calculate the line coordinates for y (線のy座標の計算)
-            if (check_line_x < 75) and (check_line_y < 25):             # If both are We check that the lines are below our threshold distance. (両方の場合は，ラインが閾値以下であることを確認)
-                cv2.line(img, start_point, end_point, (255, 0, 0), 2)   # Only above the threshold lines are displayed. (閾値以上の線だけが表示される)
-    #=================================================================#
-    return img
+    #print('distance =\n', distance)
+    min_distance = distance[np.argmin(distance)]
+    return min_distance
+
+# pointx1 = []
+# pointx2 = []
+# pointy1 = []
+# pointy2 = []
+# for h in range(3):
+#     pointx1.append(np.random.randint(1, 10))
+#     pointx2.append(np.random.randint(10, 20))
+#     pointy1.append(np.random.randint(1, 10))
+#     pointy2.append(np.random.randint(10, 20))
+# #pointX = (point2 - point1)/2
+# #print(pointX)
+# #pointY = (point1, point2)
+# #min_distance = check_distance(pointY)
+# #print(min_distance)
+# pointY = (pointx1, pointx2, pointy1, pointy2)
+# print(pointY)
+# min_distance = check_distance(pointY)
+# print(min_distance)
+
+
+
+# def check_distance(detections, img):
+#     """
+#     :param:
+#     detections = total detections in one frame (1フレーム内の総検出数)
+#     img = image from detect_image method of darknet (ダークネットの検出メソッドからの画像)
+#     :return:
+#     check_list = 0 or 1    if OK(LED-light_GREEN):0, if NO(LED-light_RED):1
+#     """
+#     #================================================================
+#     # 3.1 Purpose : Filter out Persons class from detections and get
+#     #           bounding box centroid for each person detection. (検出されたクラスをフィルタリングし，各人物のバウンディングボックスの重心を取得する)
+#     #================================================================
+#     if len(detections) > 0:                         # At least 1 detection in the image and check detection presence in a frame (画像内で少なくとも1つの検出を行い，フレーム内の検出の有無確認)
+#         centroid_dict = dict()                      # Function creates a dictionary and calls it centroid_dict (辞書の関数を作成)
+#         objectId = 0                                # We inialize a variable called ObjectId and set it to 0 (変数IDを作成し，初期値0とする)
+#         for detection in detections:                # In this if statement, we filter all the detections for persons only (人物のみにフィルタリングを行う)
+#             # Check for the only person name tag (各人物にタグをつける)
+#             name_tag = str(detection[0].decode())   # Coco file has string of all the names (検出されたクラス内から人物だけを取得する)
+#             if name_tag == 'person':
+#                 x, y, w, h = detection[2][0],\
+#                             detection[2][1],\
+#                             detection[2][2],\
+#                             detection[2][3]         # Store the center points of the detections (検出したものの中心座標，ボックスの大きさを格納する)
+#                 xmin, ymin, xmax, ymax = convertBack(float(x), float(y), float(w), float(h))   # Convert from center coordinates to rectangular coordinates, We use floats to ensure the precision of the BBox (中心座標を矩形座標に変換)
+#                 # Append center point of bbox for persons detected. (検出された人のボックスの中心点を追加する)
+#                 centroid_dict[objectId] = (int(x), int(y), xmin, ymin, xmax, ymax) # Create dictionary of tuple with 'objectId' as the index center points and bbox (各人物の中心座標やボックスサイズの情報をcentroid_dictの辞書に格納する)
+#                 objectId += 1 #Increment the index for each detection (IDをインクリメント)
+#     #=================================================================#
+#     #=================================================================
+#     # 3.2 Purpose : Determine which person bbox are close to each other (各人物間の距離が近いかどうかを判別する)
+#     #=================================================================
+#         check_list = 0 # OK(LED-light_GREEN):0, NO(LED-light_RED):1
+#         for (id1, p1), (id2, p2) in combinations(centroid_dict.items(), 2): # Get all the combinations of close detections, #List of multiple items - id1 1, points 2, 1,3 (接近検出の組み合わせを全て取得する)
+#             dx, dy = p1[0] - p2[0], p1[1] - p2[1]   # Check the difference between centroid x: 0, y :1 (各人物間の距離を求めるための座標差分)
+#             distance = get_2distance(dx, dy)             # Calculates the Euclidean distance (ユークリッド距離の計算)
+#             if distance < 75.0:                     # Set our social distance threshold - If they meet this condition then.. (社会的距離の閾値の設定)
+#                 Check_list = 1
+#                 break
+#     #=================================================================#
+
+#     return check_list
+
+# def cvDrawBoxes(detections, img):
+#     """
+#     :param:
+#     detections = total detections in one frame (1フレーム内の総検出数)
+#     img = image from detect_image method of darknet (ダークネットの検出メソッドからの画像)
+#     :return:
+#     img with bbox
+#     """
+#     #================================================================
+#     # 3.1 Purpose : Filter out Persons class from detections and get
+#     #           bounding box centroid for each person detection. (検出されたクラスをフィルタリングし，各人物のバウンディングボックスの重心を取得する)
+#     #================================================================
+#     if len(detections) > 0:                         # At least 1 detection in the image and check detection presence in a frame (画像内で少なくとも1つの検出を行い，フレーム内の検出の有無確認)
+#         centroid_dict = dict()                      # Function creates a dictionary and calls it centroid_dict (辞書の関数を作成)
+#         objectId = 0                                # We inialize a variable called ObjectId and set it to 0 (変数IDを作成し，初期値0とする)
+#         for detection in detections:                # In this if statement, we filter all the detections for persons only (人物のみにフィルタリングを行う)
+#             # Check for the only person name tag (各人物にタグをつける)
+#             name_tag = str(detection[0].decode())   # Coco file has string of all the names (検出されたクラス内から人物だけを取得する)
+#             if name_tag == 'person':
+#                 x, y, w, h = detection[2][0],\
+#                             detection[2][1],\
+#                             detection[2][2],\
+#                             detection[2][3]         # Store the center points of the detections (検出したものの中心座標，ボックスの大きさを格納する)
+#                 xmin, ymin, xmax, ymax = convertBack(float(x), float(y), float(w), float(h))   # Convert from center coordinates to rectangular coordinates, We use floats to ensure the precision of the BBox (中心座標を矩形座標に変換)
+#                 # Append center point of bbox for persons detected. (検出された人のボックスの中心点を追加する)
+#                 centroid_dict[objectId] = (int(x), int(y), xmin, ymin, xmax, ymax) # Create dictionary of tuple with 'objectId' as the index center points and bbox (各人物の中心座標やボックスサイズの情報をcentroid_dictの辞書に格納する)
+#                 objectId += 1 #Increment the index for each detection (IDをインクリメント)
+#     #=================================================================#
+#     #=================================================================
+#     # 3.2 Purpose : Determine which person bbox are close to each other (各人物間の距離が近いかどうかを判別する)
+#     #=================================================================
+#         red_zone_list = [] # List containing which Object id is in under threshold distance condition. (距離が一定値より近いIDリストの作成)
+#         red_line_list = []
+#         for (id1, p1), (id2, p2) in combinations(centroid_dict.items(), 2): # Get all the combinations of close detections, #List of multiple items - id1 1, points 2, 1,3 (接近検出の組み合わせを全て取得する)
+#             dx, dy = p1[0] - p2[0], p1[1] - p2[1]   # Check the difference between centroid x: 0, y :1 (各人物間の距離を求めるための座標差分)
+#             distance = get_2distance(dx, dy)             # Calculates the Euclidean distance (ユークリッド距離の計算)
+#             if distance < 75.0:                     # Set our social distance threshold - If they meet this condition then.. (社会的距離の閾値の設定)
+#                 if id1 not in red_zone_list:
+#                     red_zone_list.append(id1)       #  Add Id to a List (IDをリストに追加)
+#                     red_line_list.append(p1[0:2])   #  Add points to the list (線を引くための中心点をリストに追加)
+#                 if id2 not in red_zone_list:
+#                     red_zone_list.append(id2)       # Same for the second id
+#                     red_line_list.append(p2[0:2])
+#         for idx, box in centroid_dict.items():  # dict (1(key):red(value), 2 blue)  idx - key  box - value
+#             if idx in red_zone_list:   # if id is in red zone list (IDがレッドゾーンにある場合)
+#                 cv2.rectangle(img, (box[2], box[3]), (box[4], box[5]), (255, 0, 0), 2) # Create Red bounding boxes  #starting point, ending point size of 2 (ボックスの色を赤にする)
+#             else:
+#                 cv2.rectangle(img, (box[2], box[3]), (box[4], box[5]), (0, 255, 0), 2) # Create Green bounding boxes (ボックスの色を緑にする)
+#     #=================================================================#
+
+#     #=================================================================
+#     # 3.3 Purpose : Display Risk Analytics and Show Risk Indicators (リスク分析の表示とリスク指標の表示)
+#     #=================================================================
+#     #=================================================================#
+#         text = "People at Risk: %s" % str(len(red_zone_list))           # Count People at Risk (リスクのある人物を数える)
+#         location = (10,25)                                              # Set the location of the displayed text (表示されるテキストの位置の設定)
+#         cv2.putText(img, text, location, cv2.FONT_HERSHEY_SIMPLEX, 1, (246,86,86), 2, cv2.LINE_AA)  # Display Text (表示テキスト)
+
+#         for check in range(0, len(red_line_list)-1):                    # Draw line between nearby bboxes iterate through redlist items (近くにあるボックス間に線を引き，レッドリストの項目を反復処理する)
+#             start_point = red_line_list[check]
+#             end_point = red_line_list[check+1]
+#             check_line_x = abs(end_point[0] - start_point[0])           # Calculate the line coordinates for x (線のx座標の計算)
+#             check_line_y = abs(end_point[1] - start_point[1])           # Calculate the line coordinates for y (線のy座標の計算)
+#             if (check_line_x < 75) and (check_line_y < 25):             # If both are We check that the lines are below our threshold distance. (両方の場合は，ラインが閾値以下であることを確認)
+#                 cv2.line(img, start_point, end_point, (255, 0, 0), 2)   # Only above the threshold lines are displayed. (閾値以上の線だけが表示される)
+#     #=================================================================#
+#     return img
 
 # netMain = None
 # metaMain = None
