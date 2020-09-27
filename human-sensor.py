@@ -28,3 +28,14 @@ while True:
 #        subprocess.takeSendPic('')
     
     time.sleep(3)
+
+"""
+    if A == 0:
+	
+    elif A == 1:
+	time.sleep(600)
+    elif A == 2:
+        time.sleep(300)
+    elif A >= 3:
+        time.sleep(60)
+"""
