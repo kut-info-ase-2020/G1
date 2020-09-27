@@ -1,5 +1,7 @@
 import socket
 import os, sys
+from mask.image_test import mask_catch
+
 
 HOST = "0.0.0.0"
 PORT = 50001
@@ -70,7 +72,16 @@ def recv_client_data(clientsock):
 def recognition():
 	# parameter for return (INT)
 	res = 0
-
+	
+	#start to do the test on Mask-Detection
+	
+	input_path=""
+	out_path=""
+	
+	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
+	a=mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.
+	
+	
 	# please fit your models to image
 	# received image is saved in ./Pictures/sc_file.png
 	
