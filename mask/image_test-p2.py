@@ -16,7 +16,8 @@ import time
 import paramiko  
 from scp import SCPClient
 from io import open
-
+from __future__ import with_statement
+from __future__ import absolute_import
 
 
 
@@ -41,10 +42,13 @@ def upload_img(img_name, remote_path="/eden",file_path="testing/output/images/")
         print("文件上传成功")
     ssh_client.close()"""
 
+"""
 from __future__ import with_statement
 from __future__ import absolute_import
+"""
+
 u"""
-def ssh_scp_put(ip, port, user, password, local_file, remote_file):
+idef ssh_scp_put(ip, port, user, password, local_file, remote_file):
 
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
