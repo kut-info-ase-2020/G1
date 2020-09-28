@@ -42,7 +42,7 @@ def upload_img(img_name, remote_path="/eden",file_path="testing/output/images/")
         print("文件上传成功")
     ssh_client.close()"""
 
-"""
+u"""
 from __future__ import with_statement
 from __future__ import absolute_import
 """
