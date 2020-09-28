@@ -1,81 +1,40 @@
 # importing the required packages.
-from ctypes import *
+#from ctypes import *
 import math
 import random
-import os
-import cv2
+#import os
+#import cv2
 import numpy as np
-import time
+#import time
 #import darknet
-from itertools import combinations
-
-
-def get_2distance(p1, p2):  # Calculate Euclidean Distance between two points (2点間のユークリッド距離の計算)
-    """
-    :param:
-    p1, p2 = two points for calculating Euclidean Distance (ユークリッド距離の対象点)
-    :return:
-    dst = Euclidean Distance between two 2d points (2次元点間のユークリッド距離)
-    """
-    dst = math.sqrt(p1**2 + p2**2)
-    return dst
-
-def combinations_count(n, r):
-    return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
-
-def convertBack(x, y, w, h):  # Converts center coordinates to rectangle coordinates (中心座標を矩形座標に変換)
-    """
-    :param:
-    x, y = midpoint of bbox (中心座標)
-    w, h = width, height of the bbox (ボックスの大きさ)
-    :return:
-    xmin, ymin, xmax, ymax
-    """
-    xmin = int(round(x - (w / 2)))
-    xmax = int(round(x + (w / 2)))
-    ymin = int(round(y - (h / 2)))
-    ymax = int(round(y + (h / 2)))
-    return xmin, ymin, xmax, ymax
-
+#from itertools import combinations
 
 def check_distance(pointX):
     """
     :param:
-    pointX = 各人物のボックス点(タプル型) (x1,x2,y1,y2)
+    pointX = (x1,x2,y1,y2)
     :return:
-    min_distance : 最小の距離
+    min_distance : Minimum distance (最小の距離)
     """
-    midpointX, midpointY = (np.array(pointX[1])-np.array(pointX[0]))/2, (np.array(pointX[3])-np.array(pointX[2]))/2
+    midpointX, midpointY = (np.array(pointX[1])-np.array(pointX[0]))/2, (np.array(pointX[3])-np.array(pointX[2]))/2 # The central point of each person (各人物の中心点)
     #print(midpointX, midpointY)
     min_distance = 0
-    distance = [] # 距離を格納する所を初期化
+    distance = [] # Initialize the place to store the distance (距離を格納する所を初期化)
     for i in range(midpointX.shape[0]-1):
        for j in range(midpointX.shape[0]):
            if i == j or i > j:
                continue
            #print(j)
-           dx, dy = midpointX[i]-midpointX[j], midpointY[i]-midpointY[j]
+           dx, dy = midpointX[i]-midpointX[j], midpointY[i]-midpointY[j] # Differential coordinates for finding the distance between each person (各人物間の距離を求めるための座標差分)
            #print(dx, dy)
-           tmp = get_2distance(dx, dy)
-           distance.append(tmp)
-
-    #midpoint = (pointX[1] - pointX[0])/2 # それぞれの中心点を求める
-    #print('midpoint =\n', midpoint)
-    #distance = [] # 距離を格納する所を初期化
-    #for i in range(midpoint.shape[0]-1):
-    #    for j in range(midpoint.shape[0]):
-    #        if i == j or i > j:
-    #            continue
-    #        print(j)
-    #        dx, dy = midpoint[i][0]-midpoint[j][0], midpoint[i][1]-midpoint[j][1]
-    #        print(dx, dy)
-    #        tmp = get_2distance(dx, dy)
-    #        distance.append(tmp)
-
+           #tmp = get_2distance(dx, dy) # Calculates the Euclidean distance (ユークリッド距離の計算)
+           dst = math.sqrt(dx**2 + dy**2) # Calculates the Euclidean distance (ユークリッド距離の計算)
+           distance.append(dst)
     #print('distance =\n', distance)
-    min_distance = distance[np.argmin(distance)]
+    min_distance = distance[np.argmin(distance)] # Get the minimum distance (最小の距離を取得する)
     return min_distance
 
+##############テスト用#####
 # pointx1 = []
 # pointx2 = []
 # pointy1 = []
@@ -85,17 +44,42 @@ def check_distance(pointX):
 #     pointx2.append(np.random.randint(10, 20))
 #     pointy1.append(np.random.randint(1, 10))
 #     pointy2.append(np.random.randint(10, 20))
-# #pointX = (point2 - point1)/2
-# #print(pointX)
-# #pointY = (point1, point2)
-# #min_distance = check_distance(pointY)
-# #print(min_distance)
 # pointY = (pointx1, pointx2, pointy1, pointy2)
 # print(pointY)
 # min_distance = check_distance(pointY)
 # print(min_distance)
+#####################
 
 
+# def get_2distance(p1, p2):  # Calculate Euclidean Distance between two points (2点間のユークリッド距離の計算)
+#     """
+#     :param:
+#     p1, p2 = two points for calculating Euclidean Distance (ユークリッド距離の対象点)
+#     :return:
+#     dst = Euclidean Distance between two 2d points (2次元点間のユークリッド距離)
+#     """
+#     dst = math.sqrt(p1**2 + p2**2)
+#     return dst
+
+
+
+
+# def combinations_count(n, r):
+#     return math.factorial(n) // (math.factorial(n - r) * math.factorial(r))
+
+# def convertBack(x, y, w, h):  # Converts center coordinates to rectangle coordinates (中心座標を矩形座標に変換)
+#     """
+#     :param:
+#     x, y = midpoint of bbox (中心座標)
+#     w, h = width, height of the bbox (ボックスの大きさ)
+#     :return:
+#     xmin, ymin, xmax, ymax
+#     """
+#     xmin = int(round(x - (w / 2)))
+#     xmax = int(round(x + (w / 2)))
+#     ymin = int(round(y - (h / 2)))
+#     ymax = int(round(y + (h / 2)))
+#     return xmin, ymin, xmax, ymax
 
 # def check_distance(detections, img):
 #     """
