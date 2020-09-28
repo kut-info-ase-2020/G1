@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import division
 from models import Darknet
 from utils.utils import load_classes,non_max_suppression_output, non_max_suppression
