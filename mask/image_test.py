@@ -48,11 +48,11 @@ def ssh_scp_put(ip, port, user, password, local_file, remote_file):
     sftp = ssh.open_sftp()
     sftp.put(local_file, remote_file)
 """
-def mask_catch(input,output):
+def mask_catch(inpu,outpu):
 
         parser = argparse.ArgumentParser()
-        parser.add_argument("--input_file_path", type=str, default=input, help="path to images directory")
-        parser.add_argument("--output_path", type=str, default=output, help="output image directory")
+        parser.add_argument("--input_file_path", type=str, default=inpu, help="path to images directory")
+        parser.add_argument("--output_path", type=str, default=outpu, help="output image directory")
         parser.add_argument("--model_def", type=str, default="/home/ec2-user/G1/mask/data/yolov3_mask.cfg", help="path to model definition file")
         parser.add_argument("--weights_path", type=str, default="/home/ec2-user/G1/mask/checkpoints/yolov3_ckpt_35.pth", help="path to weights file")
         parser.add_argument("--class_path", type=str, default="/home/ec2-user/G1/mask/data/mask_dataset.names", help="path to class label file")
@@ -97,7 +97,7 @@ def mask_catch(input,output):
             print(image_path)
             # frame extraction
             org_img = cv2.imread(image_path)
-
+            
             # Original image width and height
             i_height, i_width = org_img.shape[:2]
 
@@ -193,7 +193,7 @@ def mask_catch(input,output):
         
 
             """------------image_save-----------------"""
-            na='result.jpg'
+            na='result.png'
             out_filepath = os.path.join(opt.output_path,na)
             cv2.imwrite(out_filepath,org_img)#org_img is final result with frames
 
