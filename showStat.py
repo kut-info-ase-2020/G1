@@ -2,7 +2,7 @@ import socket
 import os, sys
 import LEDproc as led
 
-HOST = "18.181.171.51"
+HOST = "18.183.181.34"
 PORT = 50001
 
 def main():
