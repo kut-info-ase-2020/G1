@@ -122,4 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-MEDIAS_ROOT = '/Users/jc/Desktop/WORKER/66666666/图片下载/medias/'
+MEDIAS_ROOT = '/home/medias/'
