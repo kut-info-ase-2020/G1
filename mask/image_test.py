@@ -65,7 +65,7 @@ def mask_catch(input,output):
         os.makedirs(opt.output_path, exist_ok=True)
 
         # checking for GPU
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        device = torch.device('cpu')
 
         # Set up model
         model = Darknet(opt.model_def, img_size=opt.frame_size).to(device)
