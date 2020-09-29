@@ -74,7 +74,7 @@ def recognition():
 	
 	#start to do the test on Mask-Detection
 	
-	input_path="/home/ec2-user/Pictures/sc_file.png"
+	input_path="/home/ec2-user/Pictures/"
 	out_path="/home/ec2-user/Pictures/"
 	
 	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
