@@ -32,7 +32,7 @@ def main():
 	
 	# tern on LED
 	#res = struct.unpack('>B', tmp)
-	res = int(tmp)
+	res = int(str(tmp))
 	print("type : " + str(type(tmp)) + ", value : " + tmp)
 	print("type : " + str(type(res)) + ", value : " + str(res))
 
