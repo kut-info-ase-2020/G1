@@ -31,7 +31,7 @@ def main():
 	led.LED_off()
 	
 	# tern on LED
-	res = struct.unpack('>H', tmp)
+	res = struct.unpack('>B', tmp)
 	if int(res) < 4:
 		led.LED_on(led.GREENPIN)
 	if int(res) / 8 == 1:
