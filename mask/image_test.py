@@ -51,8 +51,8 @@ def ssh_scp_put(ip, port, user, password, local_file, remote_file):
 def mask_catch(inpu,outpu):
 
         parser = argparse.ArgumentParser()
-        parser.add_argument("--input_file_path", type=str, default=inpu, help="path to images directory")
-        parser.add_argument("--output_path", type=str, default=outpu, help="output image directory")
+        parser.add_argument("--input_file_path", type=str, default="/home/ec2-user/Pictures", help="path to images directory")
+        parser.add_argument("--output_path", type=str, default="/home/ec2-user/Pictures/result", help="output image directory")
         parser.add_argument("--model_def", type=str, default="/home/ec2-user/G1/mask/data/yolov3_mask.cfg", help="path to model definition file")
         parser.add_argument("--weights_path", type=str, default="/home/ec2-user/G1/mask/checkpoints/yolov3_ckpt_35.pth", help="path to weights file")
         parser.add_argument("--class_path", type=str, default="/home/ec2-user/G1/mask/data/mask_dataset.names", help="path to class label file")
