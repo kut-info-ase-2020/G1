@@ -32,14 +32,14 @@ def main():
 	
 	# tern on LED
 	res = struct.unpack('>B', tmp)
-	if int(res) < 4:
+	if res < 4:
 		led.LED_on(led.GREENPIN)
-	if int(res) / 8 == 1:
+	if res / 8 == 1:
 		led.LED_on(led.YELLOWPIN)
-	if (int(res) % 8) / 4  == 1:
+	if int(res) % 8 / 4  == 1:
 		led.LED_on(led.REDPIN)
 	
-	print("Answer is " + str(int(res) % 4))
+	print("Answer is " + str(res % 4))
 
 if __name__ == '__main__':
 	led.setup_LED()
