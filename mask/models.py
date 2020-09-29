@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
-from utils.parse_config import parse_model_config
+from utils.utils.parse_config import parse_model_config
 from utils.utils import build_targets, to_cpu
 
 
