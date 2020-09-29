@@ -26,23 +26,41 @@ def find_NewFile(path):
 
 
 def findNewFile():
-    image1 = find_NewFile(MEDIAS_ROOT + '1/').replace('./', '/')
-    image2 = find_NewFile(MEDIAS_ROOT + '2/').replace('./', '/')
-    image3 = find_NewFile(MEDIAS_ROOT + '3/').replace('./', '/')
+    image_name = 'txt.jpg'
+
+    date_time = ""
+    num = ""
+    no_mask = ""
+    distance = ""
 
     try:
-        searchObj = re.search(r'(.*)-NUM:(.*)-Nom:(.*)-..*', image1, re.M | re.I)
-        image1Time = searchObj.group(1)
-        image1Num = searchObj.group(2)
-        image1Nom = searchObj.group(3)
+        with open(MEDIAS_ROOT + "info.txt", "r") as f:  # 打开文件
+            data = f.read()  # 读取文件
+            searchObj = re.search(r'(.*)-NUM:(.*)-Nomask:(.*)-Distance:(.*)-', data, re.M | re.I)
+            date_time = searchObj.group(1)
+            num = searchObj.group(2)
+            no_mask = searchObj.group(3)
+            distance = searchObj.group(4)
     except:
-        image1Time = ""
-        image1Num = ""
-        image1Nom = ""
-    image1Time = image1Time.replace("_", ':').replace("-", "+", 2).replace("-", " ").replace("+", "-", 2)
-    data = {"image1": {"f": image1, "t": image1Time, "num": image1Num, "nom": image1Nom},
-            "image2": {"f": image2},
-            "image3": {"f": image3, }}
+        pass
+
+    try:
+        no_mask_num = int(no_mask)
+        distance_num = float(distance)
+        mask = int(num) - no_mask_num
+    except:
+        no_mask_num = 0
+        distance_num = 0.0
+        mask = 0
+
+    situation = "Safe"
+    if distance_num < 2.5 or no_mask_num > 0:
+        situation = "Dangerous"
+
+    date_time = date_time.replace("_", ':').replace("-", "+", 2).replace("-", " ").replace("+", "-", 2)
+    data = {"f": image_name, "t": date_time, "num": num,
+            "mask": mask, "no_mask": no_mask, "distance": distance,
+            "situation": situation}
     return data
 
 
@@ -52,6 +70,8 @@ def allPage(request):
 
 
 def refresh(request):
+    key = request.POST.get("key", '')
+    print(key)
     import requests
     # url = "http://"
     # res = requests.get(url)
