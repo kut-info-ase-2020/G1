@@ -32,7 +32,7 @@ def main():
 	
 	# tern on LED
 	res = max(struct.unpack('>H', tmp))
-	print "res = " + res
+	print res
 	#res = int(str(tmp))
 	#print("type : " + str(type(tmp)) + ", value : " + tmp)
 	#print("type : " + str(type(res)) + ", value : " + str(res))
