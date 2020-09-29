@@ -31,7 +31,8 @@ def main():
 	led.LED_off()
 	
 	# tern on LED
-	res = max(struct.unpack('>B', tmp))
+	res = max(struct.unpack('>H', tmp))
+	print "res = " + res
 	#res = int(str(tmp))
 	#print("type : " + str(type(tmp)) + ", value : " + tmp)
 	#print("type : " + str(type(res)) + ", value : " + str(res))
