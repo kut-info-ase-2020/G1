@@ -97,7 +97,7 @@ def mask_catch(inpu,outpu):
             # frame extraction
             print(image_path)
             org_img = cv2.imread(image_path)
-            
+            print(org_img.shape)
             # Original image width and height
             i_height, i_width = org_img.shape[:2]
 
