@@ -1,6 +1,6 @@
 from __future__ import division
 from mask.models import Darknet
-from utils.utils import load_classes,non_max_suppression_output, non_max_suppression
+from mask.utils import load_classes,non_max_suppression_output, non_max_suppression
 import argparse
 import os
 import torch
