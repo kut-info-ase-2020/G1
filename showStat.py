@@ -30,7 +30,7 @@ def main():
 	led.LED_off()
 	
 	# tern on LED
-	res = int.from_bytes(res, "big")
+	res = int(res)
 	if int(res) < 4:
 		led.LED_on(led.GREENPIN)
 	if int(res) / 8 == 1:
