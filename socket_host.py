@@ -49,18 +49,18 @@ def recv_client_data(clientsock):
 	with open(SC_DIR + '/' + SC_FILE, 'wb') as f:
 		f.write(all_data.encode())
 	
+	'''
 	# only now 
 	global test
 	res = test % 16
 	test += 1
-
 	'''
+	
 	# actually use
 	# image in ./Pictures/sc_file.png
 	# output is Int (estimate 0 ~ 15)
 	# pleese make and use mathod
 	res = recognition()
-	'''
 
 	# send result to client
 	clientsock.sendall(res.to_bytes(1, "big"))
