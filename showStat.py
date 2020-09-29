@@ -31,8 +31,9 @@ def main():
 	led.LED_off()
 	
 	# tern on LED
-	res = struct.unpack('>B', tmp)
-	print("type : " + str(type(tmp)) + ", value : " + str(tmp))
+	#res = struct.unpack('>B', tmp)
+	res = int(tmp)
+	print("type : " + str(type(tmp)) + ", value : " + tmp)
 	print("type : " + str(type(res)) + ", value : " + str(res))
 
 	if res < 4:
