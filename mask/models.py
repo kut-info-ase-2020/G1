@@ -6,7 +6,7 @@ import torch.nn.functional as F
 import numpy as np
 
 from mask.parse_config import parse_model_config
-from utils import build_targets, to_cpu
+from mask.utils import build_targets, to_cpu
 
 
 def create_modules(module_defs):
