@@ -44,10 +44,10 @@ def recv_client_data(clientsock):
 		if not data:
 			break
 		# add data to make complete data
-		all_data += data
+		all_data += str(data)
 	# save data as image file
 	with open(SC_DIR + '/' + SC_FILE, 'wb') as f:
-		f.write(all_data)
+		f.write(all_data.encode())
 	
 	# only now 
 	global test
@@ -63,7 +63,7 @@ def recv_client_data(clientsock):
 	'''
 
 	# send result to client
-	clientsock.sendall(str(res))
+	clientsock.sendall(res.to_bytes(1, "big"))
 
 	clientsock.close()
 
