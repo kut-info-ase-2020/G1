@@ -33,8 +33,8 @@ def main():
 	# tern on LED
 	res = struct.unpack('>B', tmp)
 	#res = int(str(tmp))
-	print("type : " + str(type(tmp)) + ", value : " + tmp)
-	print("type : " + str(type(res)) + ", value : " + str(res))
+	#print("type : " + str(type(tmp)) + ", value : " + tmp)
+	#print("type : " + str(type(res)) + ", value : " + str(res))
 
 	if res < 4:
 		led.LED_on(led.GREENPIN)
