@@ -94,7 +94,8 @@ def mask_catch(inpu,outpu):
 
             print("\n"+imagename+"_______")
             image_path = os.path.join(opt.input_file_path, imagename)
-            print(image_path)
+            dd="%d"%image_path
+            print(dd)
             # frame extraction
             org_img = cv2.imread(image_path)
             
