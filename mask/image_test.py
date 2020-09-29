@@ -74,7 +74,7 @@ def mask_catch(input,output):
         if opt.weights_path.endswith(".weights"):
             model.load_darknet_weights(opt.weights_path)  # Load weights
         else:
-            model.load_state_dict(torch.load(opt.weights_path),map_location=torch.device('cpu'))  # Load checkpoints
+            model.load_state_dict(torch.load(opt.weights_path, map_location='cpu'))  # Load checkpoints
 
         # Set in evaluation mode
         model.eval()
