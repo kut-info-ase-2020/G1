@@ -32,7 +32,7 @@ def main():
 	
 	# tern on LED
 	res = struct.unpack('>B', tmp)
-	print("type : " + type(tmp) + ", value : " + tmp)
+	# print("type : " + type(tmp) + ", value : " + tmp)
 	print("type : " + type(res) + ", value : " + res)
 
 	if res < 4:
