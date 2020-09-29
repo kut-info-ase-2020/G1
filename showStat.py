@@ -1,6 +1,7 @@
 import socket
 import os, sys
 import LEDproc as led
+import struct
 
 HOST = "18.183.181.34"
 PORT = 50001
