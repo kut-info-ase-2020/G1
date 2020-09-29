@@ -31,32 +31,20 @@ max-height: 100%;
 
         <div style="padding: 20px; background-color: #F2F2F2;">
             <div class="layui-row layui-col-space15">
-                <div class="layui-col-md4">
+                <div class="layui-col-md6">
                     <div class="layui-col-md12 ">
-                        <div class="layui-tab-item layui-show" style="">
-                            <h1>Mask</h1>
-                            <h3 id="image1Time">Time:{{ data.image1.t }}</h3>
-                            <h3 id="image1Num">Number of People:{{ data.image1.num }}</h3>
-                            <h3 id="image1Nom">Number of people without masks:{{ data.image1.nom }}</h3>
-                        </div>
-                        <img id="image1" src="/medias/1/{{ data.image1.f }}" class="imageN">
+                        <img id="image" src="/medias/{{ data.f }}" class="imageN">
                     </div>
                 </div>
-                <div class="layui-col-md4">
+                <div class="layui-col-md6">
                     <div class="layui-tab-item layui-show">
-                        <h1>Crowded Space</h1>
-
-                    </div>
-                    <div class="layui-col-md12 ">
-                        <img id="image2" src="/medias/2/{{ data.image2.f }}" class="imageN">
-                    </div>
-                </div>
-                <div class="layui-col-md4">
-                    <div class="layui-tab-item layui-show">
-                        <h1>Social Distance</h1>
-                    </div>
-                    <div class="layui-col-md12 ">
-                        <img id="image3" src="/medias/3/{{ data.image3.f }}" class="imageN">
+                        <h1>Mask</h1>
+                        <h2>Time: <span id="datetime" style="font-size: 16px;">{{ data.t }}</span></h2>
+                        <h2>Number of People: <span id="num" style="font-size: 16px;">{{ data.num }}</span></h2>
+                        <h2>Distance: <span id="distance" style="font-size: 16px;">{{ data.distance }}</span></h2>
+                        <h2>Mask People: <span id="mask" style="font-size: 16px;">{{ data.mask }}</span></h2>
+                        <h2>No Mask People: <span id="no_mask" style="font-size: 16px;">{{ data.no_mask }}</span></h2>
+                        <h2>Situation: <span id="situation" style="font-size: 16px;">{{ data.situation }}</span></h2>
                     </div>
                 </div>
             </div>
@@ -65,20 +53,25 @@ max-height: 100%;
 {% endblock %}
 
 
+
 {% block js %}
     <script>
         layui.use('layer', function () {
             var $ = layui.jquery;
-
             $('#refreshAction').on('click', function () {
                 $.ajax({
                     url: "/refresh/",
-                    type: "get",
+                    data: {'key': "111"},
+                    type: "post",
                     dataType: "json",
                     success: function (data) {
-                        $("#image1").attr('src', "/medias/1/" + data.image1.f);
-                        $("#image2").attr('src', "/medias/2/" + data.image2.f);
-                        $("#image3").attr('src', "/medias/3/" + data.image3.f);
+                        $("#image").attr('src', "/medias/" + data.f);
+                        $("#datetime").html(data.t);
+                        $("#num").html(data.num);
+                        $("#distance").html(data.distance);
+                        $("#mask").html(data.mask);
+                        $("#no_mask").html(data.no_mask);
+                        $("#situation").html(data.situation);
                     },
                     error: function (data) {
 
