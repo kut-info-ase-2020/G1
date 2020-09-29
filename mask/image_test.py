@@ -94,10 +94,8 @@ def mask_catch(inpu,outpu):
 
             print("\n"+imagename+"_______")
             image_path = os.path.join(opt.input_file_path, imagename)
-            dd="%s"%image_path
-            print(dd)
             # frame extraction
-            org_img = cv2.imread(image_path)
+            org_img = cv2.imread("/home/ec2-user/Pictures/sc_file.png")
             
             # Original image width and height
             i_height, i_width = org_img.shape[:2]
