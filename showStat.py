@@ -23,14 +23,14 @@ def main():
 	s.shutdown(1)
 
 	# receive answer from server (buffer size = 4 bite)
-	res = s.recv(4)
+	tmp = s.recv(4)
 	
 	# result process
 	# turn off LED
 	led.LED_off()
 	
 	# tern on LED
-	res = int(res)
+	res = struct.unpack('>H', tmp)
 	if int(res) < 4:
 		led.LED_on(led.GREENPIN)
 	if int(res) / 8 == 1:
