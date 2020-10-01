@@ -35,7 +35,7 @@ def main():
 
 def recv_client_data(clientsock):
 	# format parameter
-	all_data = ""
+	all_data = b''
 
 	# receive data
 	while True:
@@ -44,7 +44,7 @@ def recv_client_data(clientsock):
 		if not data:
 			break
 		# add data to make complete data
-		all_data += str(data)
+		all_data += data
 	# save data as image file
 	with open(SC_DIR + '/' + SC_FILE, 'wb') as f:
 		f.write(all_data.encode())
