@@ -20,14 +20,14 @@ while True:
     	path = os.path.dirname(os.path.abspath(__file__))
     	cmd = '{}/takeSendPic.sh {}'.format(path, 20)
     	res = subprocess.call(cmd, shell=True)
-    	print(res)
+    	#print(res)
 
 
 #if __name__ == '__main__':
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-    #time.sleep(10)
+    time.sleep(10)
 
 """
     if A == 0:
