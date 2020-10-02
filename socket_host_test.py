@@ -1,12 +1,11 @@
 import socket
 import os, sys
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-from mask.image_test import mask_catch
+#from mask.image_test import mask_catch
 
 HOST = "0.0.0.0"
 PORT = 50001
 
-SC_DIR = "../Pictures"
+SC_DIR = "./Pictures"
 SC_FILE = "sc_file.png"
 
 # for test
@@ -36,7 +35,7 @@ def main():
 
 def recv_client_data(clientsock):
 	# format parameter
-	all_data = ""
+	all_data = b""
 
 	# receive data
 	while True:
@@ -50,11 +49,12 @@ def recv_client_data(clientsock):
 	with open(SC_DIR + '/' + SC_FILE, 'wb') as f:
 		f.write(all_data)
 	
+	
 	# only now 
 	global test
 	res = test % 16
 	test += 1
-
+	
 	'''
 	# actually use
 	# image in ./Pictures/sc_file.png
@@ -62,9 +62,8 @@ def recv_client_data(clientsock):
 	# pleese make and use mathod
 	res = recognition()
 	'''
-
 	# send result to client
-	clientsock.sendall(str(res))
+	clientsock.sendall(res.to_bytes(1, "big"))
 
 	clientsock.close()
 
@@ -75,8 +74,8 @@ def recognition():
 	
 	#start to do the test on Mask-Detection
 	
-	input_path="/home/ec2-user/Pictures/sc_file.png"
-	out_path="/home/ec2-user/Pictures/"
+	input_path="/home/ec2-user/Pictures"
+	out_path="/home/ec2-user/Pictures/result"
 	
 	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
 	a=mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.
