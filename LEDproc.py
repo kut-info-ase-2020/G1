@@ -40,7 +40,7 @@ def LED_on(pin):
 def LED_off():
 	GPIO.output(REDPIN, GPIO.LOW)
 	GPIO.output(GREENPIN, GPIO.LOW)
-	GPIO.output(GREENPIN, GPIO.LOW)
+	GPIO.output(YELLOWPIN, GPIO.LOW)
 
 def destroy():
     #turn off LED

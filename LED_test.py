@@ -13,6 +13,6 @@ while True:
 	else:
 		print("turn on YELLOW!!")
 		led.LED_on(led.YELLOWPIN)
-	time.sleep(1)
+	time.sleep(3)
 	cnt += 1
 	led.LED_off()
