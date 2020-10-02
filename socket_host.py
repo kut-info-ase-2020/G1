@@ -35,7 +35,7 @@ def main():
 
 def recv_client_data(clientsock):
 	# format parameter
-	all_data = b''
+	all_data = b""
 
 	# receive data
 	while True:
@@ -47,7 +47,7 @@ def recv_client_data(clientsock):
 		all_data += data
 	# save data as image file
 	with open(SC_DIR + '/' + SC_FILE, 'wb') as f:
-		f.write(all_data.encode())
+		f.write(all_data)
 	
 	'''
 	# only now 
@@ -61,7 +61,7 @@ def recv_client_data(clientsock):
 	# output is Int (estimate 0 ~ 15)
 	# pleese make and use mathod
 	res = recognition()
-
+	
 	# send result to client
 	clientsock.sendall(res.to_bytes(1, "big"))
 
