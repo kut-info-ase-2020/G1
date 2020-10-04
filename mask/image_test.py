@@ -13,6 +13,7 @@ import threading
 import time
 import pickle
 import time
+import csv
 
 
 
@@ -220,7 +221,13 @@ def mask_catch(inpu,outpu):
             file = open(full_path, 'w')
             file.write(msg)
 
-
+            # image_save csv
+            f_csv = open('result.csv', 'w')
+            wr_csv = csv.writer(f_csv)
+            csv_header = ['date', 'num', 'Nomask']
+            csv_list = ['%d'%num, '%d'%i]
+            wr_csv.writerow = (csv_header)
+            wr_csv.writerow = (csv_list)
 
         cv2.destroyAllWindows()
         return signal
