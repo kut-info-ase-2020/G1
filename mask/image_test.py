@@ -183,7 +183,10 @@ def mask_catch(inpu,outpu):
             now = time.strftime("%Y-%m-%d-%H_%M_%S",time.localtime(time.time()))
 
             #num is the number of people
-            num=len(detection)
+            if detection == None:
+                num=0
+            else:
+                num=len(detection)
             #na=now + '-' + 'NUM:%d'%num +'-'+ 'Nom:%d'%i+'-'+'.jpg'
 
 
