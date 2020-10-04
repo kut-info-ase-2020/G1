@@ -221,15 +221,6 @@ def mask_catch(inpu,outpu):
             file = open(full_path, 'w')
             file.write(msg)
 
-            # Culculate for sent result to Raspberry Pi
-            res_mk = i * 4
-
-            if num >= 3:
-                 res_num = 3
-            else:
-                 res_num = num
-
-            res = res_num + res_mk
             '''
             # image_save csv
             nam_csv = 'result.csv'
