@@ -9,6 +9,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor_pin, GPIO.IN)
 
 i = 10
+A = 0
 
 while True:
     if( GPIO.input(sensor_pin) == 0 ):
@@ -23,23 +24,25 @@ while True:
     	res = subprocess.call(cmd, shell=True)
     	#print(res)
 
-    time.sleep(1)
-"""
-    	if A == 0:
+#    time.sleep(1)
 
-    	elif A == 1:
-        	i = 50
-    	elif A == 2:
+	A += 1
+
+    	if A % 4 == 0:
+		i = 50
+    	elif A % 4 == 1:
         	i = 30
-    	elif A >= 3:
+    	elif A % 4 == 2:
+        	i = 15
+    	elif A % 4 == 3:
         	i = 2	
-"""
+	
 
 #if __name__ == '__main__':
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-#    time.sleep(10)
+    time.sleep(1)
 
 """
     if A == 0:
