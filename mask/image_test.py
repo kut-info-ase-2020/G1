@@ -226,7 +226,9 @@ def mask_catch(inpu,outpu):
 
             if num >= 3:
                  res_num = 3
-            
+            else:
+                 res_num = num
+
             res = res_num + res_mk
             '''
             # image_save csv
