@@ -225,7 +225,7 @@ def mask_catch(inpu,outpu):
             res_mk = i * 4
 
             if num >= 3:
-		res_num = 3
+                 res_num = 3
             
             res = res_num + res_mk
             '''
