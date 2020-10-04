@@ -29,7 +29,7 @@ def main():
         #cmd = '{}/takeSendPic.sh {}'.format(path, 10)
         cmd = '{}/takeSendPic.sh'.format(path)
         res = show.main("../Pictures/pic.png")
-        #res = subprocess.call(cmd, shell=True)
+        subprocess.call(cmd, shell=True)
         #print(res)
 
         if res == 0:
