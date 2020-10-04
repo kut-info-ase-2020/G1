@@ -227,7 +227,7 @@ def mask_catch(inpu,outpu):
             f_csv = open(full_path_csv, 'w')
             wr_csv = csv.writer(f_csv)
             csv_header = ['date', 'num', 'Nomask']
-            csv_list = ['%d'%num, '%d'%i]
+            csv_list = [now, '%d'%num, '%d'%i]
             wr_csv.writerow = (csv_header)
             wr_csv.writerow = (csv_list)
 
