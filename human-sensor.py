@@ -22,7 +22,7 @@ while True:
 	res = subprocess.call(cmd, shell=True)
     	#print(res)
 
-    time.sleep(1)
+#    time.sleep(1)
 
 	A += 1
 	print('A value:',A)
@@ -40,7 +40,7 @@ while True:
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-#    time.sleep(1)
+    time.sleep(1)
 
 """
     if A == 0:
