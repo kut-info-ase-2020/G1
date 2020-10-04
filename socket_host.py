@@ -93,7 +93,7 @@ def recognition():
 	csvfile = open(res_csv_path, 'r')
 	for row in csv.reader(csvfile):
 		res_num = row[1]
-		res_mask = row[2]
+		res_mk = row[2]
 	csvfile.close()
 	'''
 	res_csv = read_csv(res_csv_path, dtype = 'object', useclos=['num', 'mask'])
