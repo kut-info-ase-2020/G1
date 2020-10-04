@@ -46,6 +46,7 @@ def main():
 		led.LED_on(led.REDPIN)
 	
 	print("Answer is " + str(res % 4))
+	print("test res:" + str(res))
 
 if __name__ == '__main__':
 	led.setup_LED()
