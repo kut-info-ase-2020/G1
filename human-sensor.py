@@ -22,8 +22,8 @@ while True:
     	cmd = '{}/takeSendPic.sh {}'.format(path, i)
     	res = subprocess.call(cmd, shell=True)
     	#print(res)
-
-    	#if A == 0:
+"""
+    	if A == 0:
 
     	elif A == 1:
         	i = 50
@@ -31,7 +31,7 @@ while True:
         	i = 30
     	elif A >= 3:
         	i = 2	
-
+"""
 
 #if __name__ == '__main__':
 #    call_shell()
