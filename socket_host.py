@@ -1,6 +1,7 @@
 import socket
 import os, sys
 from mask.image_test import mask_catch
+import csv
 
 HOST = "0.0.0.0"
 PORT = 50001
@@ -84,13 +85,25 @@ def recognition():
 	
 	# please fit your models to image
 	# received image is saved in ./Pictures/sc_file.png
-	
+	nam_csv = 'result.csv'
+	res_csv_path = join(out_path, nam_csv) 
+	'''
+	csvfile = open(res_csv_path, 'r')
+	csv_reader = csv.reader(csvfile)
+	res_num = int(row[1])
+	res_mask = int(row[2])
+	csvfile.close()
+	'''
+	res_csv = read_csv(res_csv_path, dtype = 'object', useclos=['num', 'mask'])
+	res_num = res_csv[0]
+	res_mk = res_csv[1]
 
 	# return is INT
 	# 1st-6th bit means number of person
 	# 7th bit means anyone don't put on mask(1) or safe(0)
 	# 8th bit means people distance is too close(1) or safe(0)
-	return res
+	#return res
+	return res_num, res_mk
 
 if __name__ == '__main__':
 	main()
