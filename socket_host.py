@@ -87,16 +87,17 @@ def recognition():
 	# received image is saved in ./Pictures/sc_file.png
 	nam_csv = 'result.csv'
 	res_csv_path = os.path.join(out_path, nam_csv) 
-	'''
+	
 	csvfile = open(res_csv_path, 'r')
-	csv_reader = csv.reader(csvfile)
-	res_num = int(row[1])
-	res_mask = int(row[2])
+	for row in csv.reader(csvfile):
+		res_num = row[1]
+		res_mask = row[2]
 	csvfile.close()
 	'''
 	res_csv = read_csv(res_csv_path, dtype = 'object', useclos=['num', 'mask'])
 	res_num = res_csv[0]
 	res_mk = res_csv[1]
+	'''
 
 	# return is INT
 	# 1st-6th bit means number of person
