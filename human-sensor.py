@@ -8,9 +8,6 @@ sensor_pin = 26
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor_pin, GPIO.IN)
 
-i = 10
-A = 0
-
 while True:
     if( GPIO.input(sensor_pin) == 0 ):
         print ("OFF")
@@ -20,11 +17,12 @@ while True:
 
     #def call_shell():
     	path = os.path.dirname(os.path.abspath(__file__))
-    	cmd = '{}/takeSendPic.sh {}'.format(path, i)
-    	res = subprocess.call(cmd, shell=True)
+    	#cmd = '{}/takeSendPic.sh {}'.format(path, 10)
+    	cmd = '{}/takeSendPic.sh'.format(path)
+	res = subprocess.call(cmd, shell=True)
     	#print(res)
 
-#    time.sleep(1)
+    time.sleep(1)
 
 	A += 1
 	print('A value:',A)
@@ -42,7 +40,7 @@ while True:
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-    time.sleep(1)
+#    time.sleep(1)
 
 """
     if A == 0:
