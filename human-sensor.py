@@ -29,20 +29,20 @@ while True:
 	A += 1
 	print('A value:',A)
     	if A % 4 == 0:
-		i = 50
+		time.sleep(50)
     	elif A % 4 == 1:
-        	i = 30
+        	time.sleep(30)
     	elif A % 4 == 2:
-        	i = 15
+        	time.sleep(15)
     	elif A % 4 == 3:
-        	i = 2	
+        	time.sleep(2)
 	
 
 #if __name__ == '__main__':
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-    time.sleep(1)
+#    time.sleep(1)
 
 """
     if A == 0:
