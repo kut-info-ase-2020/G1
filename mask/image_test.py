@@ -228,8 +228,8 @@ def mask_catch(inpu,outpu):
             wr_csv = csv.writer(f_csv)
             csv_header = ['date', 'num', 'Nomask']
             csv_list = [now, '%d'%num, '%d'%i]
-            wr_csv.writerow = (csv_header)
-            wr_csv.writerow = (csv_list)
+            wr_csv.writerow(csv_header)
+            wr_csv.writerow(csv_list)
 
         cv2.destroyAllWindows()
         return signal
