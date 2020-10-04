@@ -7,8 +7,8 @@ HOST = "18.183.181.34"
 #HOST = "192.168.0.30"
 PORT = 50001
 
-def main():
-	image_file = sys.argv[1]
+def main(image_file):
+	#image_file = sys.argv[1]
 
 	with open(image_file, 'rb') as f:
 		binary = f.read()
@@ -46,7 +46,8 @@ def main():
 		led.LED_on(led.REDPIN)
 	
 	print(str(res % 4) + " person(s) in this picture.")
-
+	return res
+	
 if __name__ == '__main__':
 	led.setup_LED()
 	try:
