@@ -45,8 +45,7 @@ def main():
 	if int(res) % 8 / 4  == 1:
 		led.LED_on(led.REDPIN)
 	
-	print("Answer is " + str(res % 4))
-	print("test res:" + str(res))
+	print(str(res % 4) + " person(s) in this picture.")
 
 if __name__ == '__main__':
 	led.setup_LED()
