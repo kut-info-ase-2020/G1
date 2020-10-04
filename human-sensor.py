@@ -23,7 +23,7 @@ while True:
     	res = subprocess.call(cmd, shell=True)
     	#print(res)
 
-    time.sleep(10)
+    time.sleep(1)
 """
     	if A == 0:
 
