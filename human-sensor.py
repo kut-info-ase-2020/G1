@@ -22,6 +22,8 @@ while True:
     	cmd = '{}/takeSendPic.sh {}'.format(path, i)
     	res = subprocess.call(cmd, shell=True)
     	#print(res)
+
+    time.sleep(10)
 """
     	if A == 0:
 
@@ -37,7 +39,7 @@ while True:
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-    time.sleep(10)
+#    time.sleep(10)
 
 """
     if A == 0:
