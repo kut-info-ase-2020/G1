@@ -93,9 +93,9 @@ def recognition():
 	csvfile.close()
 	
 	if res_num > 3:
-		res = res_mk * 4 + 3
+		res = int(res_mk) * 4 + 3
 	else:
-		res = res_mk * 4 + res_num
+		res = int(res_mk) * 4 + int(res_num)
 
 	return res
 
