@@ -92,7 +92,7 @@ def recognition():
 		res_mk = row[2]
 	csvfile.close()
 	
-	if res_num > 3:
+	if int(res_num) > 3:
 		res = int(res_mk) * 4 + 3
 	else:
 		res = int(res_mk) * 4 + int(res_num)
