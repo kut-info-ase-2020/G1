@@ -80,12 +80,10 @@ def recognition():
 	out_path="/home/ec2-user/Pictures/result"
 	
 	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
-	a=mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.
-	
-	
-	# please fit your models to image
-	# received image is saved in ./Pictures/sc_file.png
-	
+	a=mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.	
+
+	'''
+	# sent result by csv
 	nam_csv = 'result.csv'
 	res_csv_path = os.path.join('/home/ec2-user/result', nam_csv) 
 	#res_csv_path = os.path.join(out_path, nam_csv) 
@@ -95,18 +93,19 @@ def recognition():
 		res_num = row[1]
 		res_mk = row[2]
 	csvfile.close()
+	#return res_num, res_mk
 	'''
-	res_csv = read_csv(res_csv_path, dtype = 'object', useclos=['num', 'mask'])
-	res_num = res_csv[0]
-	res_mk = res_csv[1]
-	'''
+
+	# please fit your models to image	
+	# received image is saved in ./Pictures/sc_file.png
+	
+
 
 	# return is INT
 	# 1st-6th bit means number of person
 	# 7th bit means anyone don't put on mask(1) or safe(0)
 	# 8th bit means people distance is too close(1) or safe(0)
-	#return res
-	return res_num, res_mk
+	return res
 
 if __name__ == '__main__':
 	main()

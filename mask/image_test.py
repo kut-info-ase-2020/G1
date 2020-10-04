@@ -221,6 +221,14 @@ def mask_catch(inpu,outpu):
             file = open(full_path, 'w')
             file.write(msg)
 
+            # Culculate for sent result to Raspberry Pi
+            res_mk = i * 4
+
+            if num >= 3:
+		res_num = 3
+            
+            res = res_num + res_mk
+            '''
             # image_save csv
             nam_csv = 'result.csv'
             full_path_csv = os.path.join(opt.output_path,nam_csv)
@@ -230,6 +238,7 @@ def mask_catch(inpu,outpu):
             csv_list = [now, '%d'%num, '%d'%i]
             wr_csv.writerow(csv_header)
             wr_csv.writerow(csv_list)
+            '''
 
         cv2.destroyAllWindows()
         return signal
