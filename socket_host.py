@@ -1,6 +1,6 @@
 import socket
 import os, sys
-#from mask.image_test import mask_catch
+from mask.image_test import mask_catch
 
 HOST = "0.0.0.0"
 PORT = 50001
