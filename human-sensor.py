@@ -42,7 +42,7 @@ while True:
 #    call_shell()
 #        subprocess.takeSendPic('')
     
-#    time.sleep(1)
+    time.sleep(2)
 
 """
     if A == 0:
