@@ -86,7 +86,7 @@ def recognition():
 	# please fit your models to image
 	# received image is saved in ./Pictures/sc_file.png
 	nam_csv = 'result.csv'
-	res_csv_path = os.path.join(out_path, nam_csv) 
+	res_csv_path = os.path.join(opt.out_path, nam_csv) 
 	
 	csvfile = open(res_csv_path, 'r')
 	for row in csv.reader(csvfile):
