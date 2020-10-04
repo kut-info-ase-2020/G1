@@ -61,7 +61,8 @@ def recv_client_data(clientsock):
 	# output is Int (estimate 0 ~ 15)
 	# pleese make and use mathod
 	res = recognition()
-	
+  	print(res)
+	print(type(res))	
 	# send result to client
 	clientsock.sendall(res.to_bytes(1, "big"))
 
