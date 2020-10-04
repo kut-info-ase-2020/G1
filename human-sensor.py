@@ -26,7 +26,7 @@ while True:
     path = os.path.dirname(os.path.abspath(__file__))
     #cmd = '{}/takeSendPic.sh {}'.format(path, 10)
     cmd = '{}/takeSendPic.sh'.format(path)
-    res = show.main("../Pictures/pic.ong")
+    res = show.main("../Pictures/pic.png")
     #res = subprocess.call(cmd, shell=True)
     #print(res)
 
