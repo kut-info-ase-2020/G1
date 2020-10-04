@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 import os
 import subprocess
 import showStat as show
+import LEDproc as led
 sensor_pin = 26
 
 ONE = 300
@@ -15,36 +16,38 @@ GPIO.setup(sensor_pin, GPIO.IN)
 
 A = 0
 
-while True:
-    if( GPIO.input(sensor_pin) == 0 ):
-        print ("OFF")
-    else:
-        print("ON")
+def main():
+    while True:
+        if( GPIO.input(sensor_pin) == 0 ):
+            print ("OFF")
+        else:
+            print("ON")
         # -*- coding: utf-8 -*-
 
-    #def call_shell():
-    path = os.path.dirname(os.path.abspath(__file__))
-    #cmd = '{}/takeSendPic.sh {}'.format(path, 10)
-    cmd = '{}/takeSendPic.sh'.format(path)
-    res = show.main("../Pictures/pic.png")
-    #res = subprocess.call(cmd, shell=True)
-    #print(res)
+        #def call_shell():
+        path = os.path.dirname(os.path.abspath(__file__))
+        #cmd = '{}/takeSendPic.sh {}'.format(path, 10)
+        cmd = '{}/takeSendPic.sh'.format(path)
+        res = show.main("../Pictures/pic.png")
+        #res = subprocess.call(cmd, shell=True)
+        #print(res)
 
-    if res == 0:
-	time.sleep(ONE)
-    elif res == 1:
-        time.sleep(ONE)
-    elif res == 2:
-        time.sleep(TWO)
-    elif res == 3:
-        time.sleep(MANY)
+        if res == 0:
+	    time.sleep(ONE)
+        elif res == 1:
+            time.sleep(ONE)
+        elif res == 2:
+            time.sleep(TWO)
+        elif res == 3:
+            time.sleep(MANY)
 	
 
-#if __name__ == '__main__':
-#    call_shell()
-#        subprocess.takeSendPic('')
-    #time.sleep(2)
-
+if __name__ == '__main__':
+    led.setup_LED()
+    try:
+	main()
+    except KeyboardInterrupt:
+	led.destroy()
 """
     if A == 0:
 	
