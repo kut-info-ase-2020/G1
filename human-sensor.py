@@ -27,7 +27,7 @@ while True:
 #    time.sleep(1)
 
 	A += 1
-
+	print(A)
     	if A % 4 == 0:
 		i = 50
     	elif A % 4 == 1:
