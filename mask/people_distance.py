@@ -30,7 +30,7 @@ def check_distance(pointX):
            #tmp = get_2distance(dx, dy) # Calculates the Euclidean distance (ユークリッド距離の計算)
            dst = math.sqrt(dx**2 + dy**2) # Calculates the Euclidean distance (ユークリッド距離の計算)
            distance.append(dst)
-    #print('distance =\n', distance)
+    print('distance =\n', distance)
     min_distance = distance[np.argmin(distance)] # Get the minimum distance (最小の距離を取得する)
     return min_distance
 
