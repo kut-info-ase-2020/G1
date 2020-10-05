@@ -237,13 +237,13 @@ def mask_catch(inpu,outpu):
 
             #print("Signal is ",signal)
             #print("Finish to save!!!")
-
             msg=now + '-' + 'NUM:%d'%num +'-'+ 'Nomask:%d'%i+'-'
             nam='info.txt'
             full_path = os.path.join(opt.output_path,nam)
             print("----------------")
             file = open(full_path, 'w')
             file.write(msg)
+            print("The result is :: ", msg)
 
             '''
             # image_save csv
