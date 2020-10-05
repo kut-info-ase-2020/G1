@@ -207,6 +207,7 @@ def mask_catch(inpu,outpu):
                 pointY = (pointx1, pointx2, pointy1, pointy2)
                 print(pointY)
                 min_distance = check_distance(pointY)
+                print('min', min_distance)
 
 
             """------------txt_save-----------------"""
