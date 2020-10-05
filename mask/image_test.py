@@ -1,6 +1,7 @@
 from __future__ import division
 from mask.models import Darknet
 from mask.utils import load_classes,non_max_suppression_output, non_max_suppression
+from mask.peope_distance import check_distance
 import argparse
 import os
 import torch
@@ -153,6 +154,12 @@ def mask_catch(inpu,outpu):
             #We should set a variable for the number of nomask people. i is the variable
             i=0
 
+            # Point array for peope-distance
+            pointx1 = []
+            pointx2 = []
+            pointy1 = []
+            pointy2 = []
+
             # For each detection in detections
             for detection in detections:
                 if detection is not None:
@@ -165,6 +172,11 @@ def mask_catch(inpu,outpu):
                         y1 = int(y1 * mul_constant - start_new_i_height)
                         x2 = int(x2 * mul_constant - start_new_i_width)
                         y2 = int(y2 * mul_constant - start_new_i_height)
+
+                        pointx1.append(x1)
+                        pointx2.append(x2)
+                        pointy1.append(y1)
+                        pointy2.append(y2)
 
                         # Bounding box making and setting Bounding box title
                         if (int(cls_pred) == 0):
@@ -189,6 +201,11 @@ def mask_catch(inpu,outpu):
             else:
                 num=len(detection)
             #na=now + '-' + 'NUM:%d'%num +'-'+ 'Nom:%d'%i+'-'+'.jpg'
+
+            # The shortest distance between people
+            if num > 1 and num < 7:
+                pointY = (pointx1, pointx2, pointy1, pointy2)
+                #min_distance = check_distance(pointY)
 
 
             """------------txt_save-----------------"""
