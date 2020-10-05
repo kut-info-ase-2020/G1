@@ -177,7 +177,6 @@ def mask_catch(inpu,outpu):
                         pointx2.append(x2)
                         pointy1.append(y1)
                         pointy2.append(y2)
-                        print(x1)
 
                         # Bounding box making and setting Bounding box title
                         if (int(cls_pred) == 0):
@@ -207,7 +206,7 @@ def mask_catch(inpu,outpu):
             if num > 1 and num < 7:
                 pointY = (pointx1, pointx2, pointy1, pointy2)
                 print(pointY)
-                #min_distance = check_distance(pointY)
+                min_distance = check_distance(pointY)
 
 
             """------------txt_save-----------------"""
