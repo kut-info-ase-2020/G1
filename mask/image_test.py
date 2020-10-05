@@ -245,7 +245,6 @@ def mask_catch(inpu,outpu):
             file.write(msg)
             print("The result is :: ", msg)
 
-            '''
             # image_save csv
             nam_csv = 'result.csv'
             full_path_csv = os.path.join(opt.output_path,nam_csv)
@@ -255,7 +254,6 @@ def mask_catch(inpu,outpu):
             csv_list = [now, '%d'%num, '%d'%i]
             wr_csv.writerow(csv_header)
             wr_csv.writerow(csv_list)
-            '''
 
         cv2.destroyAllWindows()
         return signal
