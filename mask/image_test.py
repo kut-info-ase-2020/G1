@@ -173,10 +173,11 @@ def mask_catch(inpu,outpu):
                         x2 = int(x2 * mul_constant - start_new_i_width)
                         y2 = int(y2 * mul_constant - start_new_i_height)
 
-                        pointx1.append(x1.to('cpu').detach().numpy().copy())
-                        pointx2.append(x2.to('cpu').detach().numpy().copy())
-                        pointy1.append(y1.to('cpu').detach().numpy().copy())
-                        pointy2.append(y2.to('cpu').detach().numpy().copy())
+                        pointx1.append(x1)
+                        pointx2.append(x2)
+                        pointy1.append(y1)
+                        pointy2.append(y2)
+                        print(x1)
 
                         # Bounding box making and setting Bounding box title
                         if (int(cls_pred) == 0):
@@ -205,7 +206,8 @@ def mask_catch(inpu,outpu):
             # The shortest distance between people
             if num > 1 and num < 7:
                 pointY = (pointx1, pointx2, pointy1, pointy2)
-                min_distance = check_distance(pointY)
+                print(pointY)
+                #min_distance = check_distance(pointY)
 
 
             """------------txt_save-----------------"""
