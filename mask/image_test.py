@@ -1,7 +1,7 @@
 from __future__ import division
 from mask.models import Darknet
 from mask.utils import load_classes,non_max_suppression_output, non_max_suppression
-from peope_distance import check_distance
+from mask.people_distance import check_distance
 import argparse
 import os
 import torch
