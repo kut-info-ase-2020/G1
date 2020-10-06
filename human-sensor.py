@@ -24,7 +24,7 @@ def main():
             print("ON")
         # -*- coding: utf-8 -*-
 
-		print("debug")
+        print("debug")
 
         #def call_shell():
         path = os.path.dirname(os.path.abspath(__file__))
