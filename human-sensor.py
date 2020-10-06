@@ -24,6 +24,8 @@ def main():
             print("ON")
         # -*- coding: utf-8 -*-
 
+		print("debug")
+
         #def call_shell():
         path = os.path.dirname(os.path.abspath(__file__))
         #cmd = '{}/takeSendPic.sh {}'.format(path, 10)
