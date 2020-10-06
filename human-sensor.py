@@ -32,7 +32,7 @@ def main():
         time.sleep(0.5)
         
         now_time = tame.time()
-        if res == 0 || res == 1:
+        if res == 0 or res == 1:
             if now_time - take_time >= ONE:
                 res = takeSendPic()
                 take_time = time.time()
