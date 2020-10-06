@@ -17,24 +17,42 @@ GPIO.setup(sensor_pin, GPIO.IN)
 A = 0
 
 def main():
+    res = 0
+	take_time = time.time()
+
     while True:
         if( GPIO.input(sensor_pin) == 0 ):
             print ("OFF")
         else:
             print("ON")
-        # -*- coding: utf-8 -*-
+            res = takeSendPic()
+			teke_time = time.time()
+            continue
+	
+        time.sleep(0.5)
+        
+		now_time = tame.time()
+        if res == 0 || res == 1:
+            if now_time - take_time >= ONE:
+                res = takeSendPic()
+                take_time = time.time()
+        elif res = 2:
+            if now_time - take_time >= TWO:
+                res = takeSendPic()
+                take_time = time.time()
+        else:
+            if now_time - take_time >= MANY:
+                res = takeSendPic()
+                take_time = time.time()
 
-        print("debug")
-
+            
+		'''
         #def call_shell():
         path = os.path.dirname(os.path.abspath(__file__))
-        print("debug1")
 		#cmd = '{}/takeSendPic.sh {}'.format(path, 10)
         cmd = '{}/takeSendPic.sh'.format(path)
-        print("debug2")
         subprocess.call(cmd, shell=True)
         res = show.main("../Pictures/pic.png")
-		#print(res)
 
         if res == 0:
 	    time.sleep(ONE)
@@ -44,7 +62,14 @@ def main():
             time.sleep(TWO)
         elif res == 3:
             time.sleep(MANY)
-	
+        '''
+
+def takeSendPic():
+    path = os.path.dirname(os.path.abspath(__file))
+    cmd = '{}/takeSendPic.sh'.format(path)
+    subprocess.call(cmd, shell=True)
+	res = show.main("../Pictures/pic.png")
+    return res
 
 if __name__ == '__main__':
     led.setup_LED()
