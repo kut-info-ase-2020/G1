@@ -32,7 +32,7 @@ def main():
         time.sleep(0.5)
         
         now_time = time.time()
-        if res == 0 or res == 1:
+        if res == 1:
             if now_time - take_time >= ONE:
                 res = takeSendPic()
                 take_time = time.time()
@@ -40,7 +40,7 @@ def main():
             if now_time - take_time >= TWO:
                 res = takeSendPic()
                 take_time = time.time()
-        else:
+        elif res == 3:
             if now_time - take_time >= MANY:
                 res = takeSendPic()
                 take_time = time.time()
