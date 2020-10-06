@@ -28,9 +28,11 @@ def main():
 
         #def call_shell():
         path = os.path.dirname(os.path.abspath(__file__))
-        #cmd = '{}/takeSendPic.sh {}'.format(path, 10)
+        print("debug1")
+		#cmd = '{}/takeSendPic.sh {}'.format(path, 10)
         cmd = '{}/takeSendPic.sh'.format(path)
-        res = show.main("../Pictures/pic.png")
+        print("debug2")
+		res = show.main("../Pictures/pic.png")
         subprocess.call(cmd, shell=True)
         #print(res)
 
