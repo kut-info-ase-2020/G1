@@ -18,15 +18,15 @@ def check_distance(pointX):
     """
     point_x = np.array(pointX[1])-np.array(pointX[0])
     point_y = np.array(pointX[3])-np.array(pointX[2])
-    print('pointX', point_x)
-    print('pointY', point_y)
+    #print('pointX', point_x)
+    #print('pointY', point_y)
     midpointX, midpointY = point_x/2, point_y/2 # The central point of each person (各人物の中心点)
     #midpointX, midpointY = (np.array(pointX[1])-np.array(pointX[0]))/2, (np.array(pointX[3])-np.array(pointX[2]))/2 # The central point of each person (各人物の中心点)
     #print(midpointX, midpointY)
-    areaXY = point_x * point_y
-    print('areaXY', areaXY)
-    lineXY = np.sqrt(areaXY)
-    print('lineXY',lineXY)
+    #areaXY = point_x * point_y
+    #print('areaXY', areaXY)
+    #lineXY = np.sqrt(areaXY)
+    #print('lineXY',lineXY)
 
     min_distance = 0
     distance = [] # Initialize the place to store the distance (距離を格納する所を初期化)
@@ -39,12 +39,12 @@ def check_distance(pointX):
            #print(dx, dy)
            #tmp = get_2distance(dx, dy) # Calculates the Euclidean distance (ユークリッド距離の計算)
            #D = (lineXY[i]-lineXY[j]) * 519.2640429 - 519.2640429
-           D = (lineXY[i]-lineXY[j]) * 207.7056172 - 207.7056172
-           print('D', D)
-           #dst = math.sqrt(dx**2 + dy**2) # Calculates the Euclidean distance (ユークリッド距離の計算)
-           dst = math.sqrt(dx**2 + dy**2 + D**2)
+           #D = (lineXY[i]-lineXY[j]) * 207.7056172 - 207.7056172
+           #print('D', D)
+           dst = math.sqrt(dx**2 + dy**2) # Calculates the Euclidean distance (ユークリッド距離の計算)
+           #dst = math.sqrt(dx**2 + dy**2 + D**2)
            distance.append(dst)
-    print('distance =\n', distance)
+    #print('distance =\n', distance)
     min_distance = distance[np.argmin(distance)] # Get the minimum distance (最小の距離を取得する)
     return min_distance
 
