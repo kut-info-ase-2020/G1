@@ -253,7 +253,7 @@ def mask_catch(inpu,outpu):
         cv2.destroyAllWindows()
         # to use return to social-distance
 		#return signal
-		return distance_check
+        return distance_check
 
 #schedule.every(2).seconds.do(mask_catch,opt)
 """
