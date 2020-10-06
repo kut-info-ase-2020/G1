@@ -8,8 +8,6 @@ HOST = "18.183.181.34"
 PORT = 50001
 
 def main(image_file):
-	if image_file == None:
-		image_file = sys.argv[1]
 
 	with open(image_file, 'rb') as f:
 		binary = f.read()
@@ -55,6 +53,6 @@ def main(image_file):
 if __name__ == '__main__':
 	led.setup_LED()
 	try:
-		main()
+		main("../Pictures/pic.png")
 	except KeyboardInterrupt:
 		led.destroy()
