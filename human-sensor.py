@@ -26,12 +26,12 @@ def main():
         else:
             print("ON")
             res = takeSendPic()
-			teke_time = time.time()
+            teke_time = time.time()
             continue
 	
         time.sleep(0.5)
         
-		now_time = tame.time()
+        now_time = tame.time()
         if res == 0 || res == 1:
             if now_time - take_time >= ONE:
                 res = takeSendPic()
@@ -68,7 +68,7 @@ def takeSendPic():
     path = os.path.dirname(os.path.abspath(__file))
     cmd = '{}/takeSendPic.sh'.format(path)
     subprocess.call(cmd, shell=True)
-	res = show.main("../Pictures/pic.png")
+    res = show.main("../Pictures/pic.png")
     return res
 
 if __name__ == '__main__':
