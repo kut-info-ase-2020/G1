@@ -32,7 +32,7 @@ def main():
 		#cmd = '{}/takeSendPic.sh {}'.format(path, 10)
         cmd = '{}/takeSendPic.sh'.format(path)
         print("debug2")
-		res = show.main("../Pictures/pic.png")
+        res = show.main("../Pictures/pic.png")
         subprocess.call(cmd, shell=True)
         #print(res)
 
