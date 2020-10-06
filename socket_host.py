@@ -74,11 +74,9 @@ def recognition():
 	res = 0
 	
 	#start to do the test on Mask-Detection
-	
 	input_path="/home/ec2-user/Pictures"
 	out_path="/home/ec2-user/Pictures/result"
 	
-	print("debug1")
 	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
 	# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.
 	distance = mask_catch(input_path,out_path)	
@@ -93,20 +91,14 @@ def recognition():
 		res_mk = row[2]
 	csvfile.close()
 	
-	print("debug2")
-	if int(res_num) > 3:
-		res = distance * 8 + int(res_mk) * 4 + 3
+	if int(res_num) > 7:
+		res = (distance or int(res_mk)) * 8 + 7
 	else:
-		res = distance * 8 + int(res_mk) * 4 + int(res_num)
-
-	return res
+		res = (distance or int(res_mk)) * 8 + int(res_num)
 
 	# please fit your models to image	
-	# received image is saved in ./Pictures/sc_file.png
-	
-
-
 	# return is INT
+	
 	# 1st-6th bit means number of person
 	# 7th bit means anyone don't put on mask(1) or safe(0)
 	# 8th bit means people distance is too close(1) or safe(0)

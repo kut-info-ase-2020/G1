@@ -204,7 +204,7 @@ def mask_catch(inpu,outpu):
 
             # The shortest distance between people
             distance_check = 0
-            if num > 1 and num < 7:
+            if num > 1:
                 pointY = (pointx1, pointx2, pointy1, pointy2)
                 min_distance = check_distance(pointY)
                 print('min', min_distance)
