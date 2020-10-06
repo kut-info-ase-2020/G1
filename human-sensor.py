@@ -7,9 +7,9 @@ import showStat as show
 import LEDproc as led
 sensor_pin = 26
 
-ONE = 3
-TWO = 2
-MANY = 1
+ONE = 300
+TWO = 120
+MANY = 30
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor_pin, GPIO.IN)
