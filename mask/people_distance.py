@@ -38,7 +38,7 @@ def check_distance(pointX):
            dx, dy = midpointX[i]-midpointX[j], midpointY[i]-midpointY[j] # Differential coordinates for finding the distance between each person (各人物間の距離を求めるための座標差分)
            #print(dx, dy)
            #tmp = get_2distance(dx, dy) # Calculates the Euclidean distance (ユークリッド距離の計算)
-           D = (lineXY[i]-lineXY[j])
+           D = (lineXY[i]-lineXY[j]) * 519.2640429 - 519.2640429
            print('D', D)
            #dst = math.sqrt(dx**2 + dy**2) # Calculates the Euclidean distance (ユークリッド距離の計算)
            dst = math.sqrt(dx**2 + dy**2 + D**2)
