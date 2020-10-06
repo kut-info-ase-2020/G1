@@ -3,10 +3,10 @@ import os, sys
 import LEDproc as led
 import struct
 
-HOST = "18.183.181.34"
-#HOST = "192.168.0.30"
-#PORT = 50001
-PORT = 2434
+#HOST = "18.183.181.34"
+HOST = "192.168.0.30"
+PORT = 50001
+
 def main(image_file):
 
 	with open(image_file, 'rb') as f:
