@@ -39,14 +39,17 @@ def main(image_file):
 	#print("type : " + str(type(res)) + ", value : " + str(res))
 
 	if res < 4:
+		# all green
 		led.LED_on(led.GREENPIN)
 	if res / 8 == 1:
+		# cannot keep social distance
 		led.LED_on(led.YELLOWPIN)
 	if int(res) % 8 / 4  == 1:
+		# anyone don't put on mask
 		led.LED_on(led.REDPIN)
 	
 	print(str(res % 4) + " person(s) in this picture.")
-	return res
+	return res % 4
 	
 if __name__ == '__main__':
 	led.setup_LED()

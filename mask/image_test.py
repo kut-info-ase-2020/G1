@@ -251,7 +251,9 @@ def mask_catch(inpu,outpu):
             wr_csv.writerow(csv_list)
 
         cv2.destroyAllWindows()
-        return signal
+        # to use return to social-distance
+		#return signal
+		return distance_check
 
 #schedule.every(2).seconds.do(mask_catch,opt)
 """

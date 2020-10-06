@@ -79,7 +79,7 @@ def recognition():
 	out_path="/home/ec2-user/Pictures/result"
 	
 	#Create a variable that returns 1 if there is even one person without a mask, 0 if everyone wears it. ---a
-	a=mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.	
+	distance = mask_catch(input_path,out_path)# This function will feedback signal 0 or 1 to server. And save result image and txt file in the output_path.	
 
 	# sent result by csv
 	nam_csv = 'result.csv'
@@ -92,9 +92,9 @@ def recognition():
 	csvfile.close()
 	
 	if int(res_num) > 3:
-		res = int(res_mk) * 4 + 3
+		res = distance * 8 + int(res_mk) * 4 + 3
 	else:
-		res = int(res_mk) * 4 + int(res_num)
+		res = distance * 8 + int(res_mk) * 4 + int(res_num)
 
 	return res
 
