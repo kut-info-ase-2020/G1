@@ -65,7 +65,7 @@ def main():
         '''
 
 def takeSendPic():
-    path = os.path.dirname(os.path.abspath(__file))
+    path = os.path.dirname(os.path.abspath(__file__))
     cmd = '{}/takeSendPic.sh'.format(path)
     subprocess.call(cmd, shell=True)
     res = show.main("../Pictures/pic.png")
