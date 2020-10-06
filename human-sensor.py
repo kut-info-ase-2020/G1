@@ -7,9 +7,9 @@ import showStat as show
 import LEDproc as led
 sensor_pin = 26
 
-ONE = 300
-TWO = 120
-MANY = 30
+ONE = 3
+TWO = 2
+MANY = 1
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor_pin, GPIO.IN)
@@ -31,7 +31,7 @@ def main():
 	
         time.sleep(0.5)
         
-        now_time = tame.time()
+        now_time = time.time()
         if res == 0 or res == 1:
             if now_time - take_time >= ONE:
                 res = takeSendPic()
