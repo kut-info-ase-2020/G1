@@ -36,7 +36,7 @@ def main():
             if now_time - take_time >= ONE:
                 res = takeSendPic()
                 take_time = time.time()
-        elif res = 2:
+        elif res == 2:
             if now_time - take_time >= TWO:
                 res = takeSendPic()
                 take_time = time.time()
