@@ -18,7 +18,7 @@ A = 0
 
 def main():
     res = 0
-	take_time = time.time()
+    take_time = time.time()
 
     while True:
         if( GPIO.input(sensor_pin) == 0 ):
