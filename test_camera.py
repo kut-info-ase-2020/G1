@@ -16,6 +16,7 @@ def takeSendPic():
 
 if __name__ == '__main__':
     led.setup_LED()
+    time.sleep(5)
     try:
 	takeSendPic()
     except KeyboardInterrupt:
