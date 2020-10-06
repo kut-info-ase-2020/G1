@@ -203,22 +203,17 @@ def mask_catch(inpu,outpu):
             #na=now + '-' + 'NUM:%d'%num +'-'+ 'Nom:%d'%i+'-'+'.jpg'
 
             # The shortest distance between people
-            print('pointx1', pointx1)
-            print('pointx2', pointx2)
-            print('pointy1', pointy1)
-            print('pointy2', pointy2)
-
+            distance_check = 0
             if num > 1 and num < 7:
                 pointY = (pointx1, pointx2, pointy1, pointy2)
-                print('pointY', pointY)
                 min_distance = check_distance(pointY)
                 print('min', min_distance)
+                if min_distance < 75:
+                    distance_check = 1
 
 
             """------------txt_save-----------------"""
 
-
-        
 
             """------------image_save-----------------"""
             na='result.png'
