@@ -32,9 +32,9 @@ def main():
 		#cmd = '{}/takeSendPic.sh {}'.format(path, 10)
         cmd = '{}/takeSendPic.sh'.format(path)
         print("debug2")
-        res = show.main("../Pictures/pic.png")
         subprocess.call(cmd, shell=True)
-        #print(res)
+        res = show.main("../Pictures/pic.png")
+		#print(res)
 
         if res == 0:
 	    time.sleep(ONE)
