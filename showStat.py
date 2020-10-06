@@ -8,7 +8,8 @@ HOST = "18.183.181.34"
 PORT = 50001
 
 def main(image_file):
-	#image_file = sys.argv[1]
+	if image_file == None:
+		image_file = sys.argv[1]
 
 	with open(image_file, 'rb') as f:
 		binary = f.read()
