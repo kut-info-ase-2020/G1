@@ -12,10 +12,8 @@ def main(image_file):
 	with open(image_file, 'rb') as f:
 		binary = f.read()
 	
-	print("debug1")
-
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	print("debug1")
+	
 	# connect server
 	s.connect((HOST, PORT))
 	
@@ -27,18 +25,18 @@ def main(image_file):
 
 	# receive answer from server (buffer size = 4 bite)
 	tmp = s.recv(4)
-	print("debug2")
+	
 	# result process
 	# turn off LED
 	led.LED_off()
-	print("debug1")
+	
 	# tern on LED
 	res = max(struct.unpack('>B', tmp))
 	print 'res = %d' % res
 	#res = int(str(tmp))
 	#print("type : " + str(type(tmp)) + ", value : " + tmp)
 	#print("type : " + str(type(res)) + ", value : " + str(res))
-	print("debug3")
+	
 	if res < 4:
 		# all green
 		led.LED_on(led.GREENPIN)
