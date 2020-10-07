@@ -20,6 +20,7 @@ def main(image_file):
 	# send image to server
 	print("Send " + image_file)
 	s.sendall(binary)
+	print("complete!")
 	# disconnect 
 	s.shutdown(1)
 
