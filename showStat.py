@@ -11,7 +11,7 @@ def main(image_file):
 
 	with open(image_file, 'rb') as f:
 		binary = f.read()
-	
+	print(len(binary))	
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	
 	# connect server
