@@ -5,7 +5,7 @@ import struct
 
 HOST = "18.183.181.34"
 #HOST = "192.168.0.30"
-PORT = 50001
+PORT = 12345
 
 def main(image_file):
 
